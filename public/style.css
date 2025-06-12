@@ -34,7 +34,7 @@ body {
 .profile-pic {
   width: 150px;
   height: 150px;
-  margin: 0 auto 20px;
+  margin: 20px auto 0;
 }
 
 .profile-pic img {

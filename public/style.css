@@ -1,15 +1,26 @@
 :root {
-  --primary-color: #0D160B;
-  --secondary-color: #785589;
-  --accent-gray: #bfbfbf;
+  --primary-color: #052e48;
+  --secondary-color: #e94560;
+  --accent-gray: #ffffff;
 }
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: var(--accent-gray);
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
 .hero {
@@ -20,16 +31,30 @@ body {
   animation: fadeIn 2s ease-in-out;
 }
 
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--secondary-color);
+}
+
 .title {
   font-size: 3rem;
   margin-bottom: 0.5rem;
-  color: var(--secondary-color);
+  color: var(--accent-gray);
   animation: slideIn 1s forwards;
 }
 
 .subtitle {
   font-size: 1.2rem;
-  opacity: 0.8;
+  opacity: 0.9;
   color: var(--accent-gray);
 }
 
@@ -47,7 +72,7 @@ body {
 }
 
 .project {
-  background: rgba(191, 191, 191, 0.1);
+  background: rgba(255, 255, 255, 0.1);
   padding: 20px;
   border-radius: 8px;
   backdrop-filter: blur(5px);
@@ -74,7 +99,7 @@ body {
 }
 
 .contact a {
-  color: #a0d8ef;
+  color: var(--secondary-color);
   text-decoration: none;
   margin: 0 5px;
 }

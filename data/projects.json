@@ -1,11 +1,11 @@
 [
   {
-    "title": "Portfolio Website",
-    "description": "A sleek portfolio with modern design and animations."
+    "title": "PurchasePulse",
+    "description": "An interactive machine learning dashboard that predicts retail customer repurchasing based on key indicators — empowering marketing and sales teams with actionable insights."
   },
   {
-    "title": "Blog Platform",
-    "description": "A simple blog application with markdown support."
+    "title": "FightMetricsAI",
+    "description": "Unlock deeper fight insights with an automated platform that scrapes, cleans, and analyzes 60K+ UFC stats. FightMetrics AI delivers bettor-beating predictions using XGBoost models, real-time data pipelines, and visual dashboards powered by R — built for analysts, bettors, and fight strategists alike."
   },
   {
     "title": "E-commerce Demo",

@@ -12,9 +12,19 @@
     "tech": ["Python", "Flask", "React.js", "Bootstrap", "Recharts", "SQL", "Gradient Descent"],
     "link": "https://your-deployment-url.com"
   },
-  {
-    "title": "FightMetricsAI",
-    "description": "Unlock deeper fight insights with an automated platform that scrapes, cleans, and analyzes 60K+ UFC stats. FightMetrics AI delivers bettor-beating predictions using XGBoost models, real-time data pipelines, and visual dashboards powered by R — built for analysts, bettors, and fight strategists alike."
+    {
+    "title": "FightMetrics AI: Automated UFC Stats Pipeline for Insight/Predictive Power",
+    "date": "Summer 2025",
+    "role": "ML & Data Pipeline Engineer",
+    "description": "Designed and implemented an end-to-end data pipeline that scraped, cleaned, and stored over 60,000 UFC data points in SQL to power advanced machine learning models, achieving fight outcome predictions more accurate than the average bettor.",
+    "details": [
+      "Trained and fine-tuned an XGBoost model using complex fighter stats and custom skill ratings",
+      "Created R visualizations for performance trends, prediction confidence, and key feature importance",
+      "Developed Python-based scrapers with pagination, live feature engineering, and automated data cleaning",
+      "Automated thousands of SQL queries to maintain a structured database for ML and analytics"
+    ],
+    "tech": ["Python", "XGBoost", "R", "SQL", "Web Scraping", "ETL Pipeline"],
+    "link": "https://your-link-if-any.com"
   },
   {
     "title": "E-commerce Demo",

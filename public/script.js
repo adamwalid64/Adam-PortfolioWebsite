@@ -27,24 +27,19 @@ function startCanvas() {
   window.addEventListener('resize', resize);
   resize();
 
-  const spacing = 40;
-  const lineCount = 6;
-  const lines = Array.from({ length: lineCount }, () => ({
-    speed: 0.3 + Math.random(),
-    offset: 0,
-    points: []
-  }));
+  const spacing = 30;
+  const speed = 1;
+  let offset = 0;
+  let points = [];
 
-  function initLines() {
+  function initLine() {
     const needed = Math.ceil(canvas.width / spacing) + 3;
-    lines.forEach(line => {
-      line.points = [];
-      let y = randY();
-      for (let i = 0; i < needed; i++) {
-        line.points.push({ x: i * spacing, y });
-        y = nextY(y);
-      }
-    });
+    points = [];
+    let y = randY();
+    for (let i = 0; i < needed; i++) {
+      points.push({ x: i * spacing, y });
+      y = nextY(y);
+    }
   }
 
   function randY() {
@@ -62,36 +57,31 @@ function startCanvas() {
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.lineWidth = 2;
-    ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+    ctx.strokeStyle = 'rgba(255,255,255,0.6)';
 
-    lines.forEach(line => {
-      ctx.beginPath();
-      for (let i = 0; i < line.points.length - 1; i++) {
-        const pt = line.points[i];
-        const next = line.points[i + 1];
-        const x = pt.x - line.offset;
-        const nx = next.x - line.offset;
-        const xc = (x + nx) / 2;
-        const yc = (pt.y + next.y) / 2;
-        if (i === 0) {
-          ctx.moveTo(x, pt.y);
-        }
-        ctx.quadraticCurveTo(x, pt.y, xc, yc);
+    ctx.beginPath();
+    for (let i = 0; i < points.length; i++) {
+      const pt = points[i];
+      const x = pt.x - offset;
+      if (i === 0) {
+        ctx.moveTo(x, pt.y);
+      } else {
+        ctx.lineTo(x, pt.y);
       }
-      ctx.stroke();
+    }
+    ctx.stroke();
 
-      line.offset += line.speed;
-      if (line.offset >= spacing) {
-        line.offset -= spacing;
-        line.points.shift();
-        const last = line.points[line.points.length - 1];
-        line.points.push({ x: last.x + spacing, y: nextY(last.y) });
-      }
-    });
+    offset += speed;
+    if (offset >= spacing) {
+      offset -= spacing;
+      points.shift();
+      const last = points[points.length - 1];
+      points.push({ x: last.x + spacing, y: nextY(last.y) });
+    }
 
     requestAnimationFrame(draw);
   }
 
-  initLines();
+  initLine();
   draw();
 }

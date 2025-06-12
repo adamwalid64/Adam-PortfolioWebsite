@@ -28,8 +28,7 @@ function startCanvas() {
   resize();
 
   const spacing = 30;
-  const speed = 1;
-  let offset = 0;
+  const speed = 0.5; // slower horizontal movement
   let points = [];
 
   function initLine() {
@@ -60,20 +59,18 @@ function startCanvas() {
     ctx.strokeStyle = 'rgba(255,255,255,0.6)';
 
     ctx.beginPath();
-    for (let i = 0; i < points.length; i++) {
-      const pt = points[i];
-      const x = pt.x - offset;
+    points.forEach((pt, i) => {
       if (i === 0) {
-        ctx.moveTo(x, pt.y);
+        ctx.moveTo(pt.x, pt.y);
       } else {
-        ctx.lineTo(x, pt.y);
+        ctx.lineTo(pt.x, pt.y);
       }
-    }
+    });
     ctx.stroke();
 
-    offset += speed;
-    if (offset >= spacing) {
-      offset -= spacing;
+    // move points left and add new ones when needed
+    points.forEach(pt => pt.x -= speed);
+    if (points[0].x <= -spacing) {
       points.shift();
       const last = points[points.length - 1];
       points.push({ x: last.x + spacing, y: nextY(last.y) });

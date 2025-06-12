@@ -1,7 +1,16 @@
 [
   {
-    "title": "PurchasePulse",
-    "description": "An interactive machine learning dashboard that predicts retail customer repurchasing based on key indicators — empowering marketing and sales teams with actionable insights."
+    "title": "Purchase Pulse: Customer Repurchase Prediction Dashboard",
+    "date": "Spring 2025",
+    "role": "Data Science & Full-Stack Developer",
+    "description": "Developed a full-stack machine learning web application to predict customer repurchase behavior. Combined a Python-based logistic regression model with an interactive React.js + Flask dashboard, enabling actionable insights for marketing teams.",
+    "details": [
+      "Integrated frontend inputs with backend ML inference via REST APIs",
+      "Designed a responsive UI using Bootstrap, Recharts, and CSS to visualize predictions and model performance",
+      "Engineered SQL-derived features and interaction terms, optimized binary cross-entropy loss via gradient descent, and achieved high prediction accuracy on a Kaggle dataset"
+    ],
+    "tech": ["Python", "Flask", "React.js", "Bootstrap", "Recharts", "SQL", "Gradient Descent"],
+    "link": "https://your-deployment-url.com"
   },
   {
     "title": "FightMetricsAI",

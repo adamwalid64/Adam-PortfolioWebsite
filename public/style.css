@@ -79,6 +79,31 @@ body {
   transition: transform 0.3s;
 }
 
+.project-date {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.project-role {
+  font-style: italic;
+  margin: 0 0 0.5rem 0;
+}
+
+.project-details {
+  padding-left: 20px;
+  margin: 0 0 0.5rem 0;
+}
+
+.project-tech {
+  margin: 0.5rem 0;
+}
+
+.project-link {
+  color: var(--accent-gray);
+  text-decoration: underline;
+}
+
 .project:hover {
   transform: translateY(-5px);
 }

@@ -26,6 +26,7 @@ body {
 }
 
 .hero {
+  position: relative;
   text-align: center;
   padding: 80px 20px;
   background: radial-gradient(circle at top left, rgba(255,255,255,0.1), transparent),
@@ -48,10 +49,12 @@ body {
 }
 
 .header-contact {
-  margin-top: 15px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
   display: flex;
-  justify-content: center;
-  gap: 15px;
+  align-items: center;
+  gap: 10px;
 }
 
 .header-contact a {
@@ -61,6 +64,13 @@ body {
 
 .header-contact a:hover {
   text-decoration: underline;
+}
+
+.header-contact a:not(:last-child)::after {
+  content: "|";
+  margin-left: 10px;
+  margin-right: 10px;
+  color: var(--accent-gray);
 }
 
 .title {

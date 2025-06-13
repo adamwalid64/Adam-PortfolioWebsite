@@ -76,7 +76,9 @@ function startCanvas() {
         y,
         value: value.toFixed(2),
         labelX: x,
-        labelY: y
+        labelY: y,
+        // mark whether this point should display a label
+        showLabel: i % 2 === 0
       });
       lastValue = value;
       y = nextY(y);
@@ -133,11 +135,11 @@ function startCanvas() {
     ctx.font = '12px monospace';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'bottom';
-    points.forEach((pt, idx) => {
+    points.forEach(pt => {
       ctx.beginPath();
       ctx.arc(pt.x, pt.y, 3, 0, Math.PI * 2);
       ctx.fill();
-      if (idx % 2 === 0) {
+      if (pt.showLabel) {
         ctx.fillText(pt.value, pt.labelX, pt.labelY - 8);
       }
     });
@@ -160,7 +162,9 @@ function startCanvas() {
         y: newY,
         value: newValue.toFixed(2),
         labelX: newX,
-        labelY: newY
+        labelY: newY,
+        // continue alternating label display
+        showLabel: points.length % 2 === 0
       });
 
       // update stock block on new point

@@ -70,7 +70,14 @@ function startCanvas() {
     let y = randY();
     for (let i = 0; i < needed; i++) {
       const value = yToValue(y);
-      points.push({ x: i * spacing, y, value: value.toFixed(2) });
+      const x = i * spacing;
+      points.push({
+        x,
+        y,
+        value: value.toFixed(2),
+        labelX: x,
+        labelY: y
+      });
       lastValue = value;
       y = nextY(y);
     }
@@ -123,13 +130,15 @@ function startCanvas() {
 
     // draw points and values
     ctx.fillStyle = 'rgba(255,255,255,0.8)';
-    ctx.font = '12px Montserrat, sans-serif';
+    ctx.font = '12px monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
     points.forEach((pt, idx) => {
       ctx.beginPath();
       ctx.arc(pt.x, pt.y, 3, 0, Math.PI * 2);
       ctx.fill();
       if (idx % 2 === 0) {
-        ctx.fillText(pt.value, pt.x - 10, pt.y - 8);
+        ctx.fillText(pt.value, pt.labelX, pt.labelY - 8);
       }
     });
 
@@ -143,7 +152,14 @@ function startCanvas() {
       const lastPt = points[points.length - 1];
       const newY = nextY(lastPt.y);
       const newValue = yToValue(newY);
-      points.push({ x: lastPt.x + spacing, y: newY, value: newValue.toFixed(2) });
+      const newX = lastPt.x + spacing;
+      points.push({
+        x: newX,
+        y: newY,
+        value: newValue.toFixed(2),
+        labelX: newX,
+        labelY: newY
+      });
 
       // update stock block on new point
       const trend = newValue - yToValue(lastPt.y);

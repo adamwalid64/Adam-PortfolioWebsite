@@ -57,16 +57,22 @@ function startCanvas() {
   const spacing = 30;
   const speed = 0.5; // slower horizontal movement
   let points = [];
-  let lastValue = 100 + Math.random() * 20;
+  let lastValue = 0;
+
+  function yToValue(y) {
+    // map y position to a stock price between 50 and 150
+    return (1 - y / canvas.height) * 100 + 50;
+  }
 
   function initLine() {
     const needed = Math.ceil(canvas.width / spacing) + 3;
     points = [];
     let y = randY();
     for (let i = 0; i < needed; i++) {
-      points.push({ x: i * spacing, y, value: lastValue.toFixed(2) });
+      const value = yToValue(y);
+      points.push({ x: i * spacing, y, value: value.toFixed(2) });
+      lastValue = value;
       y = nextY(y);
-      lastValue = nextValue(lastValue);
     }
   }
 
@@ -80,10 +86,6 @@ function startCanvas() {
     const min = canvas.height * 0.2;
     const max = canvas.height * 0.8;
     return Math.max(min, Math.min(max, y));
-  }
-
-  function nextValue(prevValue) {
-    return prevValue + (Math.random() - 0.5) * 2;
   }
 
   function draw() {
@@ -122,29 +124,30 @@ function startCanvas() {
     // draw points and values
     ctx.fillStyle = 'rgba(255,255,255,0.8)';
     ctx.font = '12px Montserrat, sans-serif';
-    points.forEach(pt => {
+    points.forEach((pt, idx) => {
       ctx.beginPath();
       ctx.arc(pt.x, pt.y, 3, 0, Math.PI * 2);
       ctx.fill();
-      ctx.fillText(pt.value, pt.x - 10, pt.y - 8);
+      if (idx % 2 === 0) {
+        ctx.fillText(pt.value, pt.x - 10, pt.y - 8);
+      }
     });
 
     // move points left and add new ones when needed
     points.forEach(pt => {
       pt.x -= speed;
-      // slight random update to value for liveliness
-      pt.value = parseFloat(pt.value) + (Math.random() - 0.5) * 0.2;
-      pt.value = pt.value.toFixed(2);
+      pt.value = yToValue(pt.y).toFixed(2);
     });
     if (points[0].x <= -spacing) {
       points.shift();
       const lastPt = points[points.length - 1];
       const newY = nextY(lastPt.y);
-      lastValue = nextValue(parseFloat(lastPt.value));
-      points.push({ x: lastPt.x + spacing, y: newY, value: lastValue.toFixed(2) });
+      const newValue = yToValue(newY);
+      points.push({ x: lastPt.x + spacing, y: newY, value: newValue.toFixed(2) });
 
       // update stock block on new point
-      const trend = lastValue - parseFloat(lastPt.value);
+      const trend = newValue - yToValue(lastPt.y);
+      lastValue = newValue;
       if (stockBlock) {
         stockBlock.textContent = trend >= 0 ? `Stock Up \u25B2 ${trend.toFixed(2)}` : `Stock Down \u25BC ${Math.abs(trend).toFixed(2)}`;
         stockBlock.classList.toggle('up', trend >= 0);

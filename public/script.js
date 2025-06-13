@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(err => console.error(err));
 
   startCanvas();
+  initBars();
 });
 
 function startCanvas() {
@@ -180,4 +181,28 @@ function startCanvas() {
 
   initLine();
   draw();
+}
+
+function initBars() {
+  const container = document.getElementById('bar-container');
+  if (!container) return;
+  const numBars = 20;
+  const bars = [];
+  for (let i = 0; i < numBars; i++) {
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    container.appendChild(bar);
+    bars.push(bar);
+  }
+
+  function animate() {
+    bars.forEach(bar => {
+      const height = Math.random() * 30 + 10; // 10-40px
+      bar.style.height = `${height}px`;
+    });
+    const delay = Math.random() * 300 + 200;
+    setTimeout(animate, delay);
+  }
+
+  animate();
 }

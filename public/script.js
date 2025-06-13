@@ -185,8 +185,11 @@ function startCanvas() {
 
 function initBars() {
   const container = document.getElementById('bar-container');
-  if (!container) return;
+  const header = document.querySelector('h1.title');
+  if (!container || !header) return;
+
   const numBars = 20;
+  const gap = 3; // keep in sync with CSS
   const bars = [];
   for (let i = 0; i < numBars; i++) {
     const bar = document.createElement('div');
@@ -195,9 +198,25 @@ function initBars() {
     bars.push(bar);
   }
 
-  function animate() {
+  function setSize() {
+    const width = header.offsetWidth;
+    const height = header.offsetHeight * 0.8;
+    container.style.width = `${width}px`;
+    container.style.height = `${height}px`;
+    const barWidth = (width - gap * (numBars - 1)) / numBars;
     bars.forEach(bar => {
-      const height = Math.random() * 30 + 10; // 10-40px
+      bar.style.width = `${barWidth}px`;
+    });
+  }
+
+  window.addEventListener('resize', setSize);
+  // wait a tick for fonts to load
+  setTimeout(setSize, 0);
+
+  function animate() {
+    const maxHeight = container.clientHeight;
+    bars.forEach(bar => {
+      const height = Math.random() * maxHeight;
       bar.style.height = `${height}px`;
     });
     const delay = Math.random() * 300 + 200;

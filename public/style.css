@@ -165,8 +165,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  height: 40px;
-  margin-top: 10px;
+  margin: 0 auto 10px;
   gap: 3px;
 }
 

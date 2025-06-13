@@ -160,3 +160,19 @@ body {
 .stock-block.down {
   border-color: #e53935;
 }
+
+.bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 40px;
+  margin-top: 10px;
+  gap: 3px;
+}
+
+.bar-container .bar {
+  width: 6px;
+  background: var(--accent-gray);
+  height: 20px;
+  transition: height 0.3s ease;
+}

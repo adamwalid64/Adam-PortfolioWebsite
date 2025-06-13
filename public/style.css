@@ -47,6 +47,22 @@ body {
   border: 3px solid var(--accent-gray);
 }
 
+.header-contact {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.header-contact a {
+  color: var(--accent-gray);
+  text-decoration: none;
+}
+
+.header-contact a:hover {
+  text-decoration: underline;
+}
+
 .title {
   font-size: 3rem;
   margin-top: 0; /* tighten spacing with bar graph */

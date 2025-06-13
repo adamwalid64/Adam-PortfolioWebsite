@@ -52,7 +52,10 @@ function startCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
-  window.addEventListener('resize', resize);
+  window.addEventListener('resize', () => {
+    resize();
+    initLine();
+  });
   resize();
 
   const spacing = 30;

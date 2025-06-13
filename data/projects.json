@@ -25,9 +25,5 @@
     ],
     "tech": ["Python", "XGBoost", "R", "SQL", "Web Scraping", "ETL Pipeline"],
     "link": "https://your-link-if-any.com"
-  },
-  {
-    "title": "E-commerce Demo",
-    "description": "Demo store showcasing shopping cart functionality."
   }
 ]

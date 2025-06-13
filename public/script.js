@@ -45,6 +45,7 @@ function startCanvas() {
   const canvas = document.getElementById('bg-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
+  const stockBlock = document.getElementById('stock-block');
 
   function resize() {
     canvas.width = window.innerWidth;
@@ -56,14 +57,16 @@ function startCanvas() {
   const spacing = 30;
   const speed = 0.5; // slower horizontal movement
   let points = [];
+  let lastValue = 100 + Math.random() * 20;
 
   function initLine() {
     const needed = Math.ceil(canvas.width / spacing) + 3;
     points = [];
     let y = randY();
     for (let i = 0; i < needed; i++) {
-      points.push({ x: i * spacing, y });
+      points.push({ x: i * spacing, y, value: lastValue.toFixed(2) });
       y = nextY(y);
+      lastValue = nextValue(lastValue);
     }
   }
 
@@ -77,6 +80,10 @@ function startCanvas() {
     const min = canvas.height * 0.2;
     const max = canvas.height * 0.8;
     return Math.max(min, Math.min(max, y));
+  }
+
+  function nextValue(prevValue) {
+    return prevValue + (Math.random() - 0.5) * 2;
   }
 
   function draw() {
@@ -94,12 +101,55 @@ function startCanvas() {
     });
     ctx.stroke();
 
+    // draw projection line
+    const last = points[points.length - 1];
+    const prev = points[points.length - 2];
+    const slope = (last.y - prev.y) / (last.x - prev.x);
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ctx.moveTo(last.x, last.y);
+    let projX = last.x;
+    let projY = last.y;
+    for (let i = 0; i < 5; i++) {
+      projX += spacing;
+      projY += slope + (Math.random() - 0.5) * canvas.height * 0.03;
+      ctx.lineTo(projX, projY);
+    }
+    ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // draw points and values
+    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    ctx.font = '12px Montserrat, sans-serif';
+    points.forEach(pt => {
+      ctx.beginPath();
+      ctx.arc(pt.x, pt.y, 3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillText(pt.value, pt.x - 10, pt.y - 8);
+    });
+
     // move points left and add new ones when needed
-    points.forEach(pt => pt.x -= speed);
+    points.forEach(pt => {
+      pt.x -= speed;
+      // slight random update to value for liveliness
+      pt.value = parseFloat(pt.value) + (Math.random() - 0.5) * 0.2;
+      pt.value = pt.value.toFixed(2);
+    });
     if (points[0].x <= -spacing) {
       points.shift();
-      const last = points[points.length - 1];
-      points.push({ x: last.x + spacing, y: nextY(last.y) });
+      const lastPt = points[points.length - 1];
+      const newY = nextY(lastPt.y);
+      lastValue = nextValue(parseFloat(lastPt.value));
+      points.push({ x: lastPt.x + spacing, y: newY, value: lastValue.toFixed(2) });
+
+      // update stock block on new point
+      const trend = lastValue - parseFloat(lastPt.value);
+      if (stockBlock) {
+        stockBlock.textContent = trend >= 0 ? `Stock Up \u25B2 ${trend.toFixed(2)}` : `Stock Down \u25BC ${Math.abs(trend).toFixed(2)}`;
+        stockBlock.classList.toggle('up', trend >= 0);
+        stockBlock.classList.toggle('down', trend < 0);
+      }
     }
 
     requestAnimationFrame(draw);

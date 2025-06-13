@@ -145,6 +145,8 @@ function startCanvas() {
     // move points left and add new ones when needed
     points.forEach(pt => {
       pt.x -= speed;
+      pt.labelX = pt.x; // keep value labels aligned with points
+      pt.labelY = pt.y;
       pt.value = yToValue(pt.y).toFixed(2);
     });
     if (points[0].x <= -spacing) {

@@ -49,6 +49,7 @@ body {
 
 .title {
   font-size: 3rem;
+  margin-top: 0; /* tighten spacing with bar graph */
   margin-bottom: 0.5rem;
   color: var(--accent-gray);
   animation: slideIn 1s forwards;
@@ -166,7 +167,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  margin: 0 auto 10px;
+  margin: 0 auto 4px; /* pull bars closer to the title */
   gap: 3px;
 }
 
@@ -175,4 +176,11 @@ body {
   background: var(--accent-gray);
   height: 20px;
   transition: height 0.3s ease;
+  background-image: repeating-linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.3) 0,
+    rgba(0, 0, 0, 0.3) 1px,
+    transparent 1px,
+    transparent 3px
+  );
 }

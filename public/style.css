@@ -52,6 +52,7 @@ body {
   margin-bottom: 0.5rem;
   color: var(--accent-gray);
   animation: slideIn 1s forwards;
+  display: inline-block;
 }
 
 .subtitle {

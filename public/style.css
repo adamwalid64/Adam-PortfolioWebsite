@@ -169,25 +169,6 @@ body {
   text-decoration: underline;
 }
 
-.stock-block {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  z-index: 5;
-  font-family: 'Montserrat', sans-serif;
-  border-left: 4px solid transparent;
-}
-.stock-block.up {
-  border-color: #4caf50;
-}
-.stock-block.down {
-  border-color: #e53935;
-}
 
 .bar-container {
   display: flex;

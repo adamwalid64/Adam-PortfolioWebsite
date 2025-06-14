@@ -46,7 +46,6 @@ function startCanvas() {
   const canvas = document.getElementById('bg-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  const stockBlock = document.getElementById('stock-block');
 
   function resize() {
     canvas.width = window.innerWidth;
@@ -169,14 +168,7 @@ function startCanvas() {
         showLabel: !lastPt.showLabel
       });
 
-      // update stock block on new point
-      const trend = newValue - yToValue(lastPt.y);
       lastValue = newValue;
-      if (stockBlock) {
-        stockBlock.textContent = trend >= 0 ? `Stock Up \u25B2 ${trend.toFixed(2)}` : `Stock Down \u25BC ${Math.abs(trend).toFixed(2)}`;
-        stockBlock.classList.toggle('up', trend >= 0);
-        stockBlock.classList.toggle('down', trend < 0);
-      }
     }
 
     requestAnimationFrame(draw);

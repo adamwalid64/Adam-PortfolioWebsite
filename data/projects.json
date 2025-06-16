@@ -10,7 +10,7 @@
       "Engineered SQL-derived features and interaction terms, optimized binary cross-entropy loss via gradient descent, and achieved high prediction accuracy on a Kaggle dataset"
     ],
     "tech": ["Python", "Flask", "React.js", "Bootstrap", "Recharts", "SQL", "Gradient Descent"],
-    "link": "https://your-deployment-url.com"
+    "link": "https://adamwalid64.github.io/PurchasePulseAI/"
   },
     {
     "title": "FightMetrics AI: Automated UFC Stats Pipeline for Insight/Predictive Power",
@@ -24,6 +24,6 @@
       "Automated thousands of SQL queries to maintain a structured database for ML and analytics"
     ],
     "tech": ["Python", "XGBoost", "R", "SQL", "Web Scraping", "ETL Pipeline"],
-    "link": "https://your-link-if-any.com"
+    "link": "Deployement Coming Soon..."
   }
 ]

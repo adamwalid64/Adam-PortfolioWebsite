@@ -10,7 +10,7 @@
       "Engineered SQL-derived features and interaction terms, optimized binary cross-entropy loss via gradient descent, and achieved high prediction accuracy on a Kaggle dataset"
     ],
     "tech": ["Python", "Flask", "React.js", "Bootstrap", "Recharts", "SQL", "Gradient Descent"],
-    "link": "https://purchase-pulse-ai.vercel.app/"
+    "link": "https://adamwalid64.github.io/PurchasePulseAI/"
   },
     {
     "title": "FightMetrics AI: Automated UFC Stats Pipeline for Insight/Predictive Power",

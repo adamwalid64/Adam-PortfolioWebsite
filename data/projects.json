@@ -24,6 +24,6 @@
       "Automated thousands of SQL queries to maintain a structured database for ML and analytics"
     ],
     "tech": ["Python", "XGBoost", "R", "SQL", "Web Scraping", "ETL Pipeline"],
-    "link": "Deployement Coming Soon..."
+    "link": "https://github.com/adamwalid64/FightMetricsAI/tree/main"
   }
 ]

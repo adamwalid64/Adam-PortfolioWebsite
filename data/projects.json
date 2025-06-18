@@ -27,7 +27,7 @@
     "link": "https://github.com/adamwalid64/FightMetricsAI/tree/main"
   },
       {
-    "title": "Physique Forged: Full-stack fitness and nutrition tracker with a medieval RPG twist. Plan workouts, track progress, and level up your health.",
+    "title": "Physique Forged: Full-stack fitness and nutrition tracker with a medieval RPG twist. Plan workouts, track progress, and level up your health. WORK IN PROGRESS",
     "date": "Summer 2025",
     "role": "Full-Stack Developer & Web Designer",
     "description": "Built a medieval-themed fitness & diet tracker featuring a React frontend served by an Express backend. Designed a cohesive pixel‑art UI, added login and signup functionality with in‑memory authentication, and configured deployment on Vercel.",

@@ -30,7 +30,7 @@
     "title": "Physique Forged: Full-stack fitness and nutrition tracker with a medieval RPG twist. Plan workouts, track progress, and level up your health.",
     "date": "Summer 2025",
     "role": "Full-Stack Developer & Web Designer",
-    "description": "Built a medieval-themed fitness & diet tracker featuring a React front end served by an Express backend. Designed a cohesive pixel‑art UI, added login and signup functionality with in‑memory authentication, and configured deployment on Vercel.",
+    "description": "Built a medieval-themed fitness & diet tracker featuring a React frontend served by an Express backend. Designed a cohesive pixel‑art UI, added login and signup functionality with in‑memory authentication, and configured deployment on Vercel.",
     "details": [
       "Developed interactive React components with custom fonts and responsive styling",
       "Implemented Express routes for signup and login using an in-memory user store",

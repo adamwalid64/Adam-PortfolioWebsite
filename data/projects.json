@@ -27,17 +27,17 @@
     "link": "https://github.com/adamwalid64/FightMetricsAI/tree/main"
   },
       {
-    "title": "FightMetrics AI: Automated UFC Stats Pipeline for Insight/Predictive Power",
+    "title": "Physique Forged: Full-stack fitness and nutrition tracker with a medieval RPG twist. Plan workouts, track progress, and level up your health.",
     "date": "Summer 2025",
-    "role": "ML & Data Pipeline Engineer",
-    "description": "Designed and implemented an end-to-end data pipeline that scraped, cleaned, and stored over 60,000 UFC data points in SQL to power advanced machine learning models, achieving fight outcome predictions more accurate than the average bettor.",
+    "role": "Full-Stack Developer & Web Designer",
+    "description": "Built a medieval-themed fitness & diet tracker featuring a React front end served by an Express backend. Designed a cohesive pixel‑art UI, added login and signup functionality with in‑memory authentication, and configured deployment on Vercel.",
     "details": [
-      "Trained and fine-tuned an XGBoost model using complex fighter stats and custom skill ratings",
-      "Created R visualizations for performance trends, prediction confidence, and key feature importance",
-      "Developed Python-based scrapers with pagination, live feature engineering, and automated data cleaning",
-      "Automated thousands of SQL queries to maintain a structured database for ML and analytics"
+      "Developed interactive React components with custom fonts and responsive styling",
+      "Implemented Express routes for signup and login using an in-memory user store",
+      "Configured a serverless API handler and deployment via Vercel",
+      "Included placeholder workout and diet planning features with pixel-art cards"
     ],
-    "tech": ["Python", "XGBoost", "R", "SQL", "Web Scraping", "ETL Pipeline"],
-    "link": "https://github.com/adamwalid64/FightMetricsAI/tree/main"
+    "tech": ["Node.js", "React.js", "Express", "HTML", "CSS", "Vercel"],
+    "link": "https://physique-forged.vercel.app/"
   }
 ]

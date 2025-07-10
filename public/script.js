@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('/api/projects')
-    .then(res => res.json())
+  loadProjects()
     .then(projects => {
       const root = document.getElementById('project-grid');
       if (root) {
@@ -15,6 +14,20 @@ document.addEventListener('DOMContentLoaded', () => {
   startCanvas();
   initBars();
 });
+
+function loadProjects() {
+  return fetch('/api/projects')
+    .then(res => {
+      if (!res.ok) throw new Error('API request failed');
+      return res.json();
+    })
+    .catch(() =>
+      fetch('data/projects.json').then(res => {
+        if (!res.ok) throw new Error('Failed to load projects.json');
+        return res.json();
+      })
+    );
+}
 
 function startCanvas() {
   const canvas = document.getElementById('bg-canvas');

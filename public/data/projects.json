@@ -1,0 +1,43 @@
+[
+  {
+    "title": "Purchase Pulse: Customer Repurchase Prediction Dashboard",
+    "date": "Spring 2025",
+    "role": "Data Science & Full-Stack Developer",
+    "description": "Developed a full-stack machine learning web application to predict customer repurchase behavior. Combined a Python-based logistic regression model with an interactive React.js + Flask dashboard, enabling actionable insights for marketing teams.",
+    "details": [
+      "Integrated frontend inputs with backend ML inference via REST APIs",
+      "Designed a responsive UI using Bootstrap, Recharts, and CSS to visualize predictions and model performance",
+      "Engineered SQL-derived features and interaction terms, optimized binary cross-entropy loss via gradient descent, and achieved high prediction accuracy on a Kaggle dataset"
+    ],
+    "tech": ["Python", "Flask", "React.js", "Bootstrap", "Recharts", "SQL", "Gradient Descent"],
+    "link": "https://adamwalid64.github.io/PurchasePulseAI/"
+  },
+    {
+    "title": "FightMetrics AI: Automated UFC Stats Pipeline for Insight/Predictive Power",
+    "date": "Summer 2025",
+    "role": "ML & Data Pipeline Engineer",
+    "description": "Designed and implemented an end-to-end data pipeline that scraped, cleaned, and stored over 60,000 UFC data points in SQL to power advanced machine learning models, achieving fight outcome predictions more accurate than the average bettor.",
+    "details": [
+      "Trained and fine-tuned an XGBoost model using complex fighter stats and custom skill ratings",
+      "Created R visualizations for performance trends, prediction confidence, and key feature importance",
+      "Developed Python-based scrapers with pagination, live feature engineering, and automated data cleaning",
+      "Automated thousands of SQL queries to maintain a structured database for ML and analytics"
+    ],
+    "tech": ["Python", "XGBoost", "R", "SQL", "Web Scraping", "ETL Pipeline"],
+    "link": "https://github.com/adamwalid64/FightMetricsAI/tree/main"
+  },
+      {
+    "title": "Physique Forged: Full-stack fitness and nutrition tracker with a medieval RPG twist. Plan workouts, track progress, and level up your health.⚠️FrontEnd Demo : Work in progress⚠️",
+    "date": "Summer 2025",
+    "role": "Full-Stack Developer & Web Designer",
+    "description": "Built a medieval-themed fitness & diet tracker featuring a React frontend served by an Express backend. Designed a cohesive pixel‑art UI, added login and signup functionality with in‑memory authentication, and configured deployment on Vercel.",
+    "details": [
+      "Developed interactive React components with custom fonts and responsive styling",
+      "Implemented Express routes for signup and login using an in-memory user store",
+      "Configured a serverless API handler and deployment via Vercel",
+      "Included placeholder workout and diet planning features with pixel-art cards"
+    ],
+    "tech": ["Node.js", "React.js", "Express", "HTML", "CSS", "Vercel"],
+    "link": "https://physique-forged.vercel.app/"
+  }
+]

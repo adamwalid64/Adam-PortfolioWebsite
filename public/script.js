@@ -2,39 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
   fetch('/api/projects')
     .then(res => res.json())
     .then(projects => {
-      const container = document.getElementById('project-list');
-      projects.forEach(p => {
-        const div = document.createElement('div');
-        div.className = 'project';
-
-        let html = `<h3>${p.title}</h3>`;
-        if (p.date) {
-          html += `<p class="project-date">${p.date}</p>`;
-        }
-        if (p.role) {
-          html += `<p class="project-role">${p.role}</p>`;
-        }
-        html += `<p>${p.description}</p>`;
-
-        if (Array.isArray(p.details)) {
-          html += '<ul class="project-details">';
-          p.details.forEach(d => {
-            html += `<li>${d}</li>`;
-          });
-          html += '</ul>';
-        }
-
-        if (Array.isArray(p.tech)) {
-          html += `<p class="project-tech"><strong>Tech:</strong> ${p.tech.join(', ')}</p>`;
-        }
-
-        if (p.link) {
-          html += `<p><a href="${p.link}" target="_blank" class="project-link">View Project</a></p>`;
-        }
-
-        div.innerHTML = html;
-        container.appendChild(div);
-      });
+      const root = document.getElementById('project-grid');
+      if (root) {
+        ReactDOM.render(
+          React.createElement(ChromaGrid, { items: projects }),
+          root
+        );
+      }
     })
     .catch(err => console.error(err));
 

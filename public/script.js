@@ -1,18 +1,49 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Render Particles background
+  let bg = document.getElementById('particles-bg');
+  if (!bg) {
+    bg = document.createElement('div');
+    bg.id = 'particles-bg';
+    document.body.prepend(bg);
+  }
+  console.log('Particles is', window.Particles);
+  try {
+    ReactDOM.render(
+      React.createElement(Particles, {
+        particleColors: ['#ffffff', '#ffffff'],
+        particleCount: 200,
+        particleSpread: 10,
+        speed: 0.1,
+        particleBaseSize: 100,
+        moveParticlesOnHover: true,
+        alphaParticles: false,
+        disableRotation: false
+      }),
+      bg
+    );
+    console.log('Particles render called');
+  } catch (e) {
+    console.error('Particles render error:', e);
+  }
   loadProjects()
     .then(projects => {
       const root = document.getElementById('project-grid');
-      if (root) {
-        ReactDOM.render(
-          React.createElement(ChromaGrid, { items: projects }),
-          root
-        );
+      // Debug: Check if ChromaGrid is defined
+      console.log('ChromaGrid is', window.ChromaGrid);
+      try {
+        if (root) {
+          ReactDOM.render(
+            React.createElement(ChromaGrid, { items: projects }),
+            root
+          );
+          console.log('ChromaGrid render called');
+        }
+      } catch (e) {
+        console.error('ChromaGrid render error:', e);
       }
     })
-    .catch(err => console.error(err));
+    .catch(err => console.error('loadProjects error:', err));
 
-  startCanvas();
-  initBars();
 });
 
 function loadProjects() {

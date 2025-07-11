@@ -1,16 +1,18 @@
 :root {
-  --primary-color: #052e48;
-  /* --primary-color:rgb(0, 0, 0); */
-  --secondary-color: #e94560;
-  /* --secondary-color:rgb(179, 52, 52); */
-  --accent-gray: #ffffff;
+  --primary-color: #151515;
+  --secondary-color: #A63D40;
+  --accent-color: #D5CCC3;
+  --text-light: #D5CCC3;
+  --text-dark: #151515;
+  --background-dark: #151515;
+  --accent-red: #A63D40;
 }
 
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  color: var(--accent-gray);
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--text-light);
+  background: var(--background-dark);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
@@ -23,17 +25,20 @@ body {
   width: 100%;
   height: 100%;
   z-index: -1;
+  background: var(--background-dark);
 }
 
+/* Restore original hero styles */
 .hero {
   position: relative;
   text-align: center;
-  padding: 80px 20px;
-  background: radial-gradient(circle at top left, rgba(255,255,255,0.1), transparent),
-              radial-gradient(circle at bottom right, rgba(255,255,255,0.1), transparent);
+  padding: 80px 0;
+  background: none;
   animation: fadeIn 2s ease-in-out;
+  width: 100%;
 }
 
+/* Restore profile picture styles */
 .profile-pic {
   width: 150px;
   height: 150px;
@@ -45,100 +50,314 @@ body {
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid var(--accent-gray);
+  border: 3px solid var(--accent-red);
+  box-shadow: 0 0 20px rgba(166, 61, 64, 0.3);
 }
 
+/* Restore header contact links */
 .header-contact {
   position: absolute;
   top: 20px;
   left: 20px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
+  z-index: 10;
 }
 
 .header-contact a {
-  color: var(--accent-gray);
+  color: var(--accent-color);
   text-decoration: none;
+  padding: 8px 16px;
+  border: 2px solid var(--accent-red);
+  border-radius: 8px;
+  background: rgba(166, 61, 64, 0.1);
+  transition: all 0.3s ease;
+  font-weight: 600;
 }
 
 .header-contact a:hover {
-  text-decoration: underline;
+  background: var(--accent-red);
+  color: var(--text-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(166, 61, 64, 0.3);
 }
 
 .header-contact a:not(:last-child)::after {
-  content: "|";
-  margin-left: 10px;
-  margin-right: 10px;
-  color: var(--accent-gray);
+  content: "";
+  margin-left: 0;
+  margin-right: 0;
 }
 
+/* Restore title styles */
 .title {
   font-size: 3rem;
-  margin-top: 0; /* tighten spacing with bar graph */
+  margin-top: 0;
   margin-bottom: 0.5rem;
-  color: var(--accent-gray);
+  color: var(--text-light);
   animation: slideIn 1s forwards;
   display: inline-block;
 }
 
+/* Restore subtitle styles */
 .subtitle {
   font-size: 1.2rem;
   opacity: 0.9;
-  color: var(--accent-gray);
+  color: var(--accent-color);
 }
 
-.projects {
-  padding: 40px 20px;
-  max-width: 1200px;
+/* Main Container */
+.main-container {
+  width: 100%;
+  max-width: 100vw;
   margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
+/* Projects Section Wrapper */
+.projects-section {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
 
+/* Projects Title */
+.projects-title {
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 2rem auto 3rem auto;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  max-width: 1200px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* Projects section - keep minimal to avoid conflicts */
+section#projects.projects, .projects {
+  margin: 0 !important;
+  padding: 0 0 3rem 0 !important;
+  width: 100%;
+  background: var(--background-dark);
+  color: var(--text-light);
+  border-radius: 0;
+  box-shadow: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-top: 3px solid var(--accent-red);
+  border-bottom: 3px solid var(--accent-red);
+  position: relative;
+}
+
+/* Add subtle glow effect to borders */
+section#projects.projects::before,
+section#projects.projects::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent-red);
+  box-shadow: 0 0 15px rgba(166, 61, 64, 0.5);
+}
+
+section#projects.projects::before {
+  top: 0;
+}
+
+section#projects.projects::after {
+  bottom: 0;
+}
+
+.projects h2 {
+  text-align: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Hide old project grid styles to avoid conflicts */
+#project-grid {
+  display: none;
+}
+
+.chroma-grid {
+  display: none;
+}
+
+.chroma-card {
+  display: none;
+}
+
+.chroma-info {
+  display: none;
+}
+
+.chroma-info .name {
+  display: none;
+}
+
+.chroma-info .role,
+.chroma-info .description {
+  display: none;
+}
+
+.tech-chip {
+  display: none;
+}
+
+/* Keep animations for ProfileCard compatibility */
 @keyframes slideIn {
-  from { transform: translateY(-30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive design for main container */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 0 15px;
+  }
+  
+  .projects-title {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-container {
+    padding: 0 10px;
+  }
+  
+  .projects-title {
+    padding: 0 10px;
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
+/* Restore contact section */
 .contact {
   text-align: center;
   padding: 40px 20px;
+  background: var(--accent-red);
+  color: var(--text-light);
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -2px 24px rgba(166, 61, 64, 0.3);
+  margin-top: 2rem;
 }
 
 .contact a {
-  color: var(--primary-color);
+  color: var(--text-light);
   text-decoration: none;
   margin: 0 5px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
 .contact a:hover {
-  text-decoration: underline;
+  background: rgba(213, 204, 195, 0.2);
+  color: var(--text-light);
+  text-decoration: none;
 }
 
-
+/* Restore bar container */
 .bar-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* Align bars to the left to match axes */
   align-items: flex-end;
-  margin: 0 auto 4px; /* pull bars closer to the title */
+  margin: 0 auto 0; /* Increased margin to prevent bouncing */
   gap: 3px;
+  position: relative;
+  padding: 20px 0 0 20px; /* Add padding for axes */
+  min-height: 80px; /* Ensure consistent height */
+  width: 140px; /* Fixed width to contain bars and axes */
 }
 
 .bar-container .bar {
   width: 6px;
-  background: var(--accent-gray);
-  height: 20px;
+  background: var(--accent-color);
+  height: 40px;
   transition: height 0.3s ease;
   background-image: repeating-linear-gradient(
     to top,
-    rgba(0, 0, 0, 0.3) 0,
-    rgba(0, 0, 0, 0.3) 1px,
+    rgba(166, 61, 64, 0.3) 0,
+    rgba(166, 61, 64, 0.3) 1px,
     transparent 1px,
     transparent 3px
   );
+  position: relative;
+  z-index: 2;
+  bottom: 10px;
+}
+
+/* Y-axis with arrow */
+.y-axis {
+  position: absolute;
+  left: 15px; /* Moved slightly to the left */
+  top: 27px; /* Moved down to match bar graph base */
+  width: 2px;
+  height: 70px; /* Match the maximum bar height */
+  background: var(--accent-red);
+  z-index: 1;
+}
+
+.y-axis::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -3px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 8px solid var(--accent-red);
+}
+
+/* X-axis with arrow */
+.x-axis {
+  position: absolute;
+  left: 15px; /* Align with Y-axis */
+  bottom: 3.25px; /* Moved down proportionally to match Y-axis spacing */
+  width: 150px; /* Extended to reach final bar: 20 bars * 6px + 19 gaps * 3px = 120 + 57 = 177px, but adjusted for visual alignment */
+  height: 2px;
+  background: var(--accent-red);
+  z-index: 1;
+}
+
+.x-axis::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: -3px;
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 8px solid var(--accent-red);
 }

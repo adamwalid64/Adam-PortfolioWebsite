@@ -6,43 +6,85 @@
   <title>Adam's Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="ChromaGrid.css">
-</head>
-<body>
-  <canvas id="bg-canvas" aria-hidden="true"></canvas>
-  <header class="hero">
-    <div class="header-contact">
-      <a href="https://www.linkedin.com/in/adamwalid/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/adamwalid64" target="_blank" rel="noopener">GitHub</a>
-    </div>
-    <div id="bar-container" class="bar-container" aria-hidden="true"></div>
-    <h1 class="title">Hi, I'm <strong>Adam Walid</strong></h1>
-    <p class="subtitle">Data Science & Full-Stack Developer | CS + Data Analytics @ Syracuse University</p>
-    <div class="profile-pic">
-      <img src="images/linkedin.jpg" alt="Profile picture" />
-    </div>
-  </header>
-  <main>
-    <section id="projects" class="projects">
-      <h2>Projects</h2>
-      <div id="project-grid"></div>
-    </section>
-  </main>
-  <footer class="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:adamwalidprof@gmail.com">adamwalidprof@gmail.com</a></p>
-    <p>Phone: <a href="tel:9084773134">908-477-3134</a></p>
-    <p>
-      <a href="https://www.linkedin.com/in/adamwalid/" target="_blank">LinkedIn</a>
-      |
-      <a href="https://github.com/adamwalid64" target="_blank">GitHub</a>
-    </p>
-  </footer>
+  <link rel="stylesheet" href="ProfileCard.css">
   <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script type="text/babel" src="ChromaGrid.js"></script>
-  <script src="script.js" type="text/babel"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" src="ProfileCard.js"></script>
+  <script type="text/babel" src="ProjectCarousel.js"></script>
+  <script src="BarAnimation.js"></script>
+  <script type="text/babel" src="CardTiltEffects.js"></script>
+  <script type="text/babel" src="HyperspeedBackground.js"></script>
+  <script type="text/babel" src="App.js"></script>
+  <script type="text/babel">
+    // Main render with particles background
+    const { useState, useEffect } = React;
+    
+    function MainApp() {
+      const [isLoaded, setIsLoaded] = useState(false);
+      
+      useEffect(() => {
+        // Wait for all components to be available
+        const checkComponents = () => {
+          if (window.App && window.HyperspeedBackground && window.ProjectCarousel) {
+            setIsLoaded(true);
+          } else {
+            setTimeout(checkComponents, 100);
+          }
+        };
+        checkComponents();
+      }, []);
+      
+      if (!isLoaded) {
+        return React.createElement('div', {
+          style: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh',
+            color: '#fff',
+            fontSize: '18px'
+          }
+        }, 'Loading...');
+      }
+      
+      // Hyperspeed background
+      const hyperspeedBg = React.createElement('div', {
+        style: {
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          zIndex: 0,
+          pointerEvents: 'none',
+        }
+      }, React.createElement(window.HyperspeedBackground, {
+        speed: 0.5,
+        starCount: 150,
+        starSize: 2,
+        trailLength: 25,
+        backgroundColor: '#151515',
+        starColor: '#D5CCC3',
+        trailColor: '#A63D40'
+      }));
+      
+      // Main app content
+      const appContent = React.createElement('div', {
+        style: { position: 'relative', zIndex: 1 }
+      }, React.createElement(window.App));
+      
+      return React.createElement(React.Fragment, null, hyperspeedBg, appContent);
+    }
+    
+    ReactDOM.render(
+      React.createElement(MainApp),
+      document.getElementById('root')
+    );
+  </script>
 </body>
 </html>

@@ -165,6 +165,18 @@ const ProjectCarousel = ({ projects }) => {
     `)}`;
   };
 
+  // Get project-specific image
+  const getProjectImage = (project) => {
+    const theme = getProjectTheme(project);
+    if (theme === 'purchase-pulse') {
+      return 'images/purchase_pulse_logo.png';
+    }
+    if (theme === 'fightmetrics-ai') {
+      return 'images/redrobo.png';
+    }
+    return project.image || getPlaceholderImage(project, 80);
+  };
+
   return (
     <div className="carousel-container" ref={carouselRef}>
       <div className="carousel-track">
@@ -183,7 +195,7 @@ const ProjectCarousel = ({ projects }) => {
                   <div className="card-avatar">
                     <img
                       className="avatar"
-                      src={project.image || getPlaceholderImage(project, 80)}
+                      src={getProjectImage(project)}
                       alt={`${project.title} icon`}
                       loading="lazy"
                       onError={(e) => {
@@ -229,26 +241,13 @@ const ProjectCarousel = ({ projects }) => {
                      {project.role || "Active"}
                    </div>
                   
-                  <div className="card-user-info">
-                    <div className="user-details">
-                      <div className="mini-avatar">
-                        <img
-                          src={project.image || getPlaceholderImage(project, 52)}
-                          alt={`${project.title} mini icon`}
-                          loading="lazy"
-                          onError={(e) => {
-                            e.target.src = getPlaceholderImage(project, 52);
-                          }}
-                        />
-                      </div>
-                      <div className="user-text">
-                        <div className="handle">{project.title}</div>
-                        <div className="status">{project.role || "Active"}</div>
-                      </div>
-                    </div>
-                    <button className="contact-btn">
+                  <div className="card-links">
+                    <a href={project.link || "#"} target="_blank" rel="noopener noreferrer" className="project-link">
                       View Project
-                    </button>
+                    </a>
+                    <a href={project.github || "#"} target="_blank" rel="noopener noreferrer" className="project-link github">
+                      View GitHub
+                    </a>
                   </div>
                 </div>
               </div>

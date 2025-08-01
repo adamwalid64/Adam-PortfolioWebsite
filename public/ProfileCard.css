@@ -4,7 +4,7 @@
 .carousel-container {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 60px 0 20px 0;
   overflow: hidden;
@@ -36,10 +36,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 600px;
+  height: 700px;
   perspective: 1000px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
   padding-top: 40px;
 }
@@ -54,8 +54,8 @@
 /* Carousel Cards */
 .carousel-card {
   position: absolute;
-  width: 400px;
-  height: 550px;
+  width: 600px;
+  height: 650px;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   transform-style: preserve-3d;
   cursor: pointer;
@@ -92,13 +92,13 @@
 }
 
 .carousel-card.left {
-  transform: translateX(-60%) scale(0.8) translateZ(-100px);
+  transform: translateX(-70%) scale(0.8) translateZ(-100px);
   z-index: 5;
   opacity: 0.7;
 }
 
 .carousel-card.right {
-  transform: translateX(60%) scale(0.8) translateZ(-100px);
+  transform: translateX(70%) scale(0.8) translateZ(-100px);
   z-index: 5;
   opacity: 0.7;
 }
@@ -131,12 +131,12 @@
   height: 100%;
   background: rgba(21, 21, 21, 0.95);
   border-radius: 20px;
-  padding: 30px;
+  padding: 25px;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
   align-items: center;
   justify-content: center;
   border: 2px solid var(--accent-red);
@@ -156,7 +156,7 @@
 .card-avatar {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .card-avatar .avatar {
@@ -170,13 +170,83 @@
 
 /* Theme Colors */
 .carousel-card.purchase-pulse .avatar {
-  border-color: var(--accent-red);
-  box-shadow: 0 0 20px rgba(166, 61, 64, 0.5);
+  border-color: #7C73E6;
+  box-shadow: 0 0 20px rgba(124, 115, 230, 0.6);
+}
+
+/* Purchase Pulse Theme */
+.carousel-card.purchase-pulse .card-content {
+  border: 2px solid #7C73E6;
+  background: rgba(21, 21, 21, 0.95);
+}
+
+.carousel-card.purchase-pulse .card-content:hover {
+  border-color: #8884d8;
+  box-shadow: inset 0 0 15px rgba(124, 115, 230, 0.3);
+  background: rgba(21, 21, 21, 0.98);
+}
+
+.carousel-card.purchase-pulse .card-details h3 {
+  color: #7C73E6;
+}
+
+.carousel-card.purchase-pulse .card-details h3:hover {
+  text-shadow: 0 0 8px rgba(124, 115, 230, 0.6);
+}
+
+.carousel-card.purchase-pulse .card-details p {
+  color: var(--text-light) !important;
+}
+
+.carousel-card.purchase-pulse .card-features h4,
+.carousel-card.purchase-pulse .card-tech h4 {
+  color: var(--text-light);
+}
+
+.carousel-card.purchase-pulse .card-features li {
+  background: rgba(124, 115, 230, 0.2);
+  border: 1px solid rgba(124, 115, 230, 0.4);
+  color: var(--text-light);
+}
+
+.carousel-card.purchase-pulse .tech-tag {
+  background: rgba(124, 115, 230, 0.3);
+  border: 1px solid rgba(124, 115, 230, 0.5);
+  color: var(--text-light);
+}
+
+.carousel-card.purchase-pulse .project-link {
+  background: #7C73E6;
+  color: #363b4e;
+}
+
+.carousel-card.purchase-pulse .project-link:hover {
+  background: #8884d8;
+  box-shadow: 0 5px 15px rgba(124, 115, 230, 0.4);
+}
+
+.carousel-card.purchase-pulse .project-link.github {
+  background: rgba(124, 115, 230, 0.3);
+  border: 1px solid #7C73E6;
+  color: #8884d8;
+}
+
+.carousel-card.purchase-pulse .project-link.github:hover {
+  background: #7C73E6;
+  color: #363b4e;
+}
+
+.carousel-card.purchase-pulse .card-links {
+  border-top: 1px solid rgba(124, 115, 230, 0.4);
+}
+
+.carousel-card.purchase-pulse .card-status {
+  color: #8884d8 !important;
 }
 
 .carousel-card.fightmetrics-ai .avatar {
-  border-color: var(--accent-red);
-  box-shadow: 0 0 20px rgba(166, 61, 64, 0.5);
+  border-color: #b34345;
+  box-shadow: 0 0 20px rgba(179, 67, 69, 0.5);
 }
 
 .carousel-card.physique-forged .avatar {
@@ -184,12 +254,20 @@
   box-shadow: 0 0 20px rgba(166, 61, 64, 0.5);
 }
 
+.carousel-card.fightmetrics-ai .card-details h3 {
+  color: #b34345;
+}
+
+.carousel-card.fightmetrics-ai .card-details h3:hover {
+  text-shadow: 0 0 8px rgba(179, 67, 69, 0.6);
+}
+
 /* Card Details */
 .card-details {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 6px;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -197,9 +275,9 @@
 
 .card-details h3 {
   color: var(--text-light);
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
-  margin: 0;
+  margin: 0 0 2px 0;
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -210,7 +288,7 @@
 
 .card-details p {
   color: var(--accent-color);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.5;
   margin: 0;
   text-align: center;
@@ -222,16 +300,17 @@
   text-align: center;
   font-style: italic;
   opacity: 0.8;
+  margin-bottom: 3px;
 }
 
 /* Features Section */
 .card-features {
-  margin-top: 15px;
+  margin-top: 8px;
 }
 
 .card-features h4 {
   color: var(--text-light);
-  font-size: 16px;
+  font-size: 18px;
   margin: 0 0 10px 0;
   text-align: center;
 }
@@ -242,12 +321,12 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .card-features li {
   color: var(--accent-color);
-  font-size: 12px;
+  font-size: 13px;
   padding: 5px 10px;
   background: rgba(166, 61, 64, 0.2);
   border-radius: 15px;
@@ -257,12 +336,12 @@
 
 /* Tech Stack */
 .card-tech {
-  margin-top: 15px;
+  margin-top: 8px;
 }
 
 .card-tech h4 {
   color: var(--text-light);
-  font-size: 16px;
+  font-size: 18px;
   margin: 0 0 10px 0;
   text-align: center;
 }
@@ -276,7 +355,7 @@
 
 .tech-tag {
   color: var(--text-light);
-  font-size: 10px;
+  font-size: 11px;
   padding: 3px 8px;
   background: rgba(166, 61, 64, 0.3);
   border-radius: 10px;
@@ -293,54 +372,18 @@
   letter-spacing: 1px;
 }
 
-/* User Info Section */
-.card-user-info {
+/* Project Links Section */
+.card-links {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 15px;
   padding: 15px 0;
   border-top: 1px solid rgba(166, 61, 64, 0.3);
   margin-top: auto;
 }
 
-.user-details {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.mini-avatar {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-.mini-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.user-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.handle {
-  color: var(--text-light);
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.status {
-  color: var(--accent-color);
-  font-size: 12px;
-}
-
-.contact-btn {
+.project-link {
   background: var(--accent-red);
   color: var(--text-light);
   border: none;
@@ -352,12 +395,25 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  text-decoration: none;
+  display: inline-block;
 }
 
-.contact-btn:hover {
+.project-link:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(166, 61, 64, 0.4);
   background: rgba(166, 61, 64, 0.8);
+  color: var(--text-light);
+  text-decoration: none;
+}
+
+.project-link.github {
+  background: rgba(166, 61, 64, 0.3);
+  border: 1px solid var(--accent-red);
+}
+
+.project-link.github:hover {
+  background: var(--accent-red);
 }
 
 /* Navigation Controls */
@@ -409,7 +465,7 @@
   margin-top: 30px;
   padding: 20px 0;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1600px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -451,20 +507,20 @@
   }
   
   .carousel-track {
-    height: 500px;
+    height: 600px;
   }
   
   .carousel-card {
-    width: 320px;
-    height: 450px;
+    width: 500px;
+    height: 550px;
   }
   
   .carousel-card.left {
-    transform: translateX(-50%) scale(0.7) translateZ(-50px);
+    transform: translateX(-60%) scale(0.7) translateZ(-50px);
   }
   
   .carousel-card.right {
-    transform: translateX(50%) scale(0.7) translateZ(-50px);
+    transform: translateX(60%) scale(0.7) translateZ(-50px);
   }
   
   .carousel-nav {
@@ -487,12 +543,12 @@
 
 @media (max-width: 480px) {
   .carousel-card {
-    width: 280px;
-    height: 400px;
+    width: 420px;
+    height: 480px;
   }
   
   .card-content {
-    padding: 20px;
+    padding: 25px;
   }
   
   .card-details h3 {

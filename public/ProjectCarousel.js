@@ -93,7 +93,7 @@ const ProjectCarousel = ({ projects }) => {
       return 'images/redrobo.png';
     }
     if (theme === 'nfl-fantasy-rag') {
-      return 'images/NFL_RAG_logo.png';
+      return 'images/nfl_RAG_logo.png';
     }
     return project.image || getPlaceholderImage(project, 80);
   };

@@ -48,8 +48,8 @@ class ResumeButton extends React.Component {
   handleDownload = () => {
     // Create a temporary link to download the resume
     const link = document.createElement('a');
-    link.href = 'images/Adam_Walid_Resume.pdf';
-    link.download = 'Adam_Walid_Resume.pdf';
+    link.href = 'images/Adam-Walid-Resume.pdf';
+    link.download = 'Adam-Walid-Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -69,7 +69,7 @@ class ResumeButton extends React.Component {
           <div className="resume-dropdown">
             <div className="resume-preview" onClick={this.openFullScreen}>
               <iframe 
-                src="images/Adam_Walid_Resume.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                src="images/Adam-Walid-Resume.pdf#toolbar=0&navpanes=0&scrollbar=0"
                 width="100%"
                 height="400px"
                 title="Resume Preview"
@@ -107,7 +107,7 @@ class ResumeButton extends React.Component {
               </div>
               <div className="pdf-modal-content">
                 <iframe 
-                  src="images/Adam_Walid_Resume.pdf#toolbar=1&navpanes=1&scrollbar=1"
+                  src="images/Adam-Walid-Resume.pdf#toolbar=1&navpanes=1&scrollbar=1"
                   width="100%"
                   height="100%"
                   title="Full Screen Resume"

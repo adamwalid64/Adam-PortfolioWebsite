@@ -86,14 +86,18 @@ const ProjectCarousel = ({ projects }) => {
   // Get project-specific image
   const getProjectImage = (project) => {
     const theme = getProjectTheme(project);
+    console.log('Project:', project.title, 'Theme:', theme);
+    
     if (theme === 'purchase-pulse') {
-      return 'images/purchase_pulse_logo.png';
+      return '/images/purchase_pulse_logo.png';
     }
     if (theme === 'fightmetrics-ai') {
-      return 'images/redrobo.png';
+      return '/images/redrobo.png';
     }
     if (theme === 'nfl-fantasy-rag') {
-      return 'images/nfl_RAG_logo.png';
+      const imagePath = '/images/nfl_RAG_logo.png';
+      console.log('NFL RAG image path:', imagePath);
+      return imagePath;
     }
     return project.image || getPlaceholderImage(project, 80);
   };
@@ -120,7 +124,11 @@ const ProjectCarousel = ({ projects }) => {
                       alt={`${project.title} icon`}
                       loading="lazy"
                       onError={(e) => {
+                        console.log('Image failed to load:', e.target.src, 'for project:', project.title);
                         e.target.src = getPlaceholderImage(project, 80);
+                      }}
+                      onLoad={(e) => {
+                        console.log('Image loaded successfully:', e.target.src, 'for project:', project.title);
                       }}
                     />
                   </div>

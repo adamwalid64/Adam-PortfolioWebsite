@@ -17,6 +17,10 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+  /* Safari mobile fixes */
+  -webkit-overflow-scrolling: touch;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 #bg-canvas {
@@ -27,6 +31,12 @@ body {
   height: 100%;
   z-index: -1;
   background: var(--background-dark);
+  /* Safari mobile canvas fixes */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* Restore original hero styles */

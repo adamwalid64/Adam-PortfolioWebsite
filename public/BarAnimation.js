@@ -12,7 +12,22 @@ function createBarAnimation() {
   for (let i = 0; i < barCount; i++) {
     const bar = document.createElement('div');
     bar.className = 'bar';
-    bar.style.height = Math.random() * 60 + 10 + 'px'; // Random height between 10-70px
+    
+    // Random height between 10-70px
+    bar.style.height = Math.random() * 60 + 10 + 'px';
+    
+    // Randomly add internal separations to create stacked effect
+    if (Math.random() < 0.25) { // 25% chance of internal separation
+      const segments = Math.floor(Math.random() * 2) + 2; // 2-3 segments (fewer segments)
+      bar.style.background = `repeating-linear-gradient(
+        to top,
+        #D5CCC3 0,
+        #D5CCC3 calc(100% / ${segments} - 3px),
+        transparent calc(100% / ${segments} - 3px),
+        transparent calc(100% / ${segments})
+      )`;
+    }
+    
     barContainer.appendChild(bar);
     bars.push(bar);
   }
@@ -31,8 +46,23 @@ function createBarAnimation() {
   function animateBars() {
     const bars = barContainer.querySelectorAll('.bar');
     bars.forEach(bar => {
-      const newHeight = Math.random() * 60 + 10; // Random height between 10-70px
+      // Random height between 10-70px
+      const newHeight = Math.random() * 60 + 10;
       bar.style.height = newHeight + 'px';
+      
+      // Randomly change internal separations for dynamic stacked effect
+      if (Math.random() < 0.08) { // 8% chance to change internal separation
+        const segments = Math.floor(Math.random() * 2) + 2; // 2-3 segments
+        bar.style.background = `repeating-linear-gradient(
+          to top,
+          #D5CCC3 0,
+          #D5CCC3 calc(100% / ${segments} - 3px),
+          transparent calc(100% / ${segments} - 3px),
+          transparent calc(100% / ${segments})
+        )`;
+      } else if (Math.random() < 0.05) { // 5% chance to remove separation
+        bar.style.background = '#D5CCC3';
+      }
     });
   }
 

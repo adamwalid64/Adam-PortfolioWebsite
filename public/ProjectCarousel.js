@@ -46,89 +46,7 @@ const ProjectCarousel = ({ projects }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentIndex, isAnimating]);
 
-  // Enhanced touch/swipe support with mouse drag
-  useEffect(() => {
-    let startX = 0;
-    let startY = 0;
-    let isDragging = false;
-    let dragDistance = 0;
-    let isMouseDrag = false;
-
-    const handleStart = (e) => {
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      
-      startX = clientX;
-      startY = clientY;
-      isDragging = true;
-      dragDistance = 0;
-      isMouseDrag = !e.touches;
-      
-      // Prevent text selection during drag
-      if (isMouseDrag) {
-        e.preventDefault();
-      }
-    };
-
-    const handleMove = (e) => {
-      if (!isDragging) return;
-      
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      
-      const diffX = startX - clientX;
-      const diffY = startY - clientY;
-      dragDistance = Math.abs(diffX);
-
-      // Prevent default for mouse drag to avoid text selection
-      if (isMouseDrag) {
-        e.preventDefault();
-      }
-
-      // Only handle horizontal swipes with minimum distance
-      const minDistance = isMouseDrag ? 80 : 50; // Higher threshold for mouse
-      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > minDistance) {
-        if (diffX > 0) {
-          goToNext();
-        } else {
-          goToPrev();
-        }
-        isDragging = false;
-        dragDistance = 0;
-      }
-    };
-
-    const handleEnd = () => {
-      isDragging = false;
-      dragDistance = 0;
-    };
-
-    const carousel = carouselRef.current;
-    if (carousel) {
-      // Touch events
-      carousel.addEventListener('touchstart', handleStart, { passive: false });
-      carousel.addEventListener('touchmove', handleMove, { passive: false });
-      carousel.addEventListener('touchend', handleEnd);
-      
-      // Mouse events for desktop drag
-      carousel.addEventListener('mousedown', handleStart);
-      carousel.addEventListener('mousemove', handleMove);
-      carousel.addEventListener('mouseup', handleEnd);
-      carousel.addEventListener('mouseleave', handleEnd);
-    }
-
-    return () => {
-      if (carousel) {
-        carousel.removeEventListener('touchstart', handleStart);
-        carousel.removeEventListener('touchmove', handleMove);
-        carousel.removeEventListener('touchend', handleEnd);
-        carousel.removeEventListener('mousedown', handleStart);
-        carousel.removeEventListener('mousemove', handleMove);
-        carousel.removeEventListener('mouseup', handleEnd);
-        carousel.removeEventListener('mouseleave', handleEnd);
-      }
-    };
-  }, [currentIndex, isAnimating]);
+  // Drag/swipe functionality removed to prevent conflicts with button clicks
 
   const getCardPosition = (index) => {
     const relativeIndex = (index - currentIndex + totalProjects) % totalProjects;
@@ -143,7 +61,7 @@ const ProjectCarousel = ({ projects }) => {
     const title = project.title.toLowerCase();
     if (title.includes('purchase') || title.includes('pulse')) return 'purchase-pulse';
     if (title.includes('fight') || title.includes('metrics')) return 'fightmetrics-ai';
-    if (title.includes('physique') || title.includes('forged')) return 'physique-forged';
+    if (title.includes('nfl') || title.includes('fantasy') || title.includes('rag')) return 'nfl-fantasy-rag';
     return '';
   };
 
@@ -151,8 +69,8 @@ const ProjectCarousel = ({ projects }) => {
   const getPlaceholderImage = (project, size = 80) => {
     const colors = {
       'purchase-pulse': 'A63D40',
-      'fightmetrics-ai': 'A63D40', 
-      'physique-forged': 'A63D40'
+      'fightmetrics-ai': 'A63D40',
+      'nfl-fantasy-rag': 'A63D40'
     };
     const theme = getProjectTheme(project);
     const color = colors[theme] || 'A63D40';
@@ -173,6 +91,9 @@ const ProjectCarousel = ({ projects }) => {
     }
     if (theme === 'fightmetrics-ai') {
       return 'images/redrobo.png';
+    }
+    if (theme === 'nfl-fantasy-rag') {
+      return 'images/NFL_RAG_logo.png';
     }
     return project.image || getPlaceholderImage(project, 80);
   };
@@ -212,43 +133,68 @@ const ProjectCarousel = ({ projects }) => {
                       <div className="card-date">{project.date}</div>
                     )}
                     
-                                         {project.details && project.details.length > 0 && (
-                       <div className="card-features">
-                         <h4>Key Features</h4>
-                         <ul>
-                           {project.details.slice(0, 3).map((detail, idx) => (
-                             <li key={idx}>{detail}</li>
-                           ))}
-                         </ul>
-                       </div>
-                     )}
-                     
-                     {project.tech && project.tech.length > 0 && (
-                       <div className="card-tech">
-                         <h4>Tech Stack</h4>
-                         <div className="tech-tags">
-                           {project.tech.slice(0, 4).map((tech, idx) => (
-                             <span key={idx} className="tech-tag">
-                               {tech}
-                             </span>
-                           ))}
-                         </div>
-                       </div>
-                     )}
+                    {project.details && project.details.length > 0 && (
+                      <div className="card-features">
+                        <h4>Key Features</h4>
+                        <ul>
+                          {project.details.slice(0, 3).map((detail, idx) => (
+                            <li key={idx}>{detail}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    
+                    {project.tech && project.tech.length > 0 && (
+                      <div className="card-tech">
+                        <h4>Tech Stack</h4>
+                        <div className="tech-tags">
+                          {project.tech.map((tech, idx) => (
+                            <span key={idx} className="tech-tag">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                   
-                                     <div className="card-status">
-                     {project.role || "Active"}
-                   </div>
+                  <div className="card-status">
+                    {project.role || "Active"}
+                  </div>
                   
                   <div className="card-links">
-                    <a href={project.link || "#"} target="_blank" rel="noopener noreferrer" className="project-link">
-                      View Project
-                    </a>
-                    <a href={project.github || "#"} target="_blank" rel="noopener noreferrer" className="project-link github">
+                    {project.projectLink && theme !== 'nfl-fantasy-rag' && (
+                      <a 
+                        href={project.projectLink} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="project-link"
+                        onClick={(e) => {
+                          console.log('Project link clicked:', project.projectLink);
+                          // Ensure the link opens
+                          window.open(project.projectLink, '_blank', 'noopener,noreferrer');
+                        }}
+                      >
+                        View Project
+                      </a>
+                    )}
+                    <a 
+                      href={project.githubLink || "#"} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="project-link github"
+                      onClick={(e) => {
+                        console.log('GitHub link clicked:', project.githubLink);
+                        if (project.githubLink) {
+                          // Ensure the link opens
+                          window.open(project.githubLink, '_blank', 'noopener,noreferrer');
+                        }
+                      }}
+                    >
                       View GitHub
                     </a>
                   </div>
+
                 </div>
               </div>
             </div>

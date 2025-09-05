@@ -1,5 +1,23 @@
 [
   {
+    "title": "FightMetricsAI: UFC Prediction Platform with Ensemble ML & RAG",
+    "date": "Summer 2025",
+    "role": "Full-Stack ML Engineer & Data Pipeline Architect",
+    "description": "Built a comprehensive UFC prediction platform combining ensemble machine learning with RAG-powered sentiment analysis and a full-stack web application, processing 60,000+ UFC data points for enhanced fight outcome predictions.",
+    "details": [
+      "Ensemble ML system with XGBoost, CatBoost, Logistic Regression, and PyTorch MLP using Out-of-Fold stacking for superior prediction accuracy",
+      "Real-time RAG pipeline with LangChain and OpenAI GPT-4 for sentiment analysis and fight context validation",
+      "Full-stack React/Flask web app with prediction dashboard, fighter database, and real-time streaming updates"
+    ],
+    "tech": [
+      "Python", "React", "Flask", "PyTorch", "XGBoost", "CatBoost", "LangChain", 
+      "OpenAI GPT-4", "FAISS", "Playwright", "MySQL", "Ensemble ML",
+      "RAG Pipeline"
+    ],
+    "projectLink": "https://fightmetricsai.onrender.com",
+    "githubLink": "https://github.com/adamwalid64/FightMetricsAI"
+  },
+  {
     "title": "Purchase Pulse: Customer Repurchase Prediction Dashboard",
     "date": "Spring 2025",
     "role": "Data Science & Full-Stack Developer",
@@ -10,34 +28,21 @@
       "Engineered SQL-derived features and interaction terms, optimized binary cross-entropy loss via gradient descent, and achieved high prediction accuracy on a Kaggle dataset"
     ],
     "tech": ["Python", "Flask", "React.js", "Bootstrap", "Recharts", "SQL", "Gradient Descent"],
-    "link": "https://adamwalid64.github.io/PurchasePulseAI/"
+    "projectLink": "https://adamwalid64.github.io/PurchasePulseAI/",
+    "githubLink": "https://github.com/adamwalid64/PurchasePulseAI"
   },
-    {
-    "title": "FightMetrics AI: Automated UFC Stats Pipeline for Insight/Predictive Power",
+  {
+    "title": "NFL Fantasy RAG Pipeline: AI-Powered Fantasy Football Assistant",
     "date": "Summer 2025",
-    "role": "ML & Data Pipeline Engineer",
-    "description": "Designed and implemented an end-to-end data pipeline that scraped, cleaned, and stored over 60,000 UFC data points in SQL to power advanced machine learning models, achieving fight outcome predictions more accurate than the average bettor.",
+    "role": "AI Engineer & Data Scientist",
+    "description": "Developed an intelligent NFL fantasy football draft assistant using Retrieval-Augmented Generation (RAG) to provide real-time, data-driven draft recommendations. The system combines web scraping, NLP, and AI to analyze current NFL news and deliver personalized draft strategies.",
     "details": [
-      "Trained and fine-tuned an XGBoost model using complex fighter stats and custom skill ratings",
-      "Created R visualizations for performance trends, prediction confidence, and key feature importance",
-      "Developed Python-based scrapers with pagination, live feature engineering, and automated data cleaning",
-      "Automated thousands of SQL queries to maintain a structured database for ML and analytics"
+      "Advanced RAG-Powered Draft Assistant: Retrieval-Augmented Generation system using OpenAI GPT-4 and FAISS that generates personalized draft strategies and risk assessments",
+      "Production-Ready AI Infrastructure: Built-in cost optimization, multi-source validation, and scalable data pipeline for handling thousands of articles",
+      "Real-time NFL Data Intelligence: Web scraping system that continuously collects and processes NFL news, injury reports, and fantasy rankings"
     ],
-    "tech": ["Python", "XGBoost", "R", "SQL", "Web Scraping", "ETL Pipeline"],
-    "link": "https://github.com/adamwalid64/FightMetricsAI/tree/main"
-  },
-      {
-    "title": "Physique Forged: Full-stack fitness and nutrition tracker with a medieval RPG twist. Plan workouts, track progress, and level up your health.⚠️FrontEnd Demo : Work in progress⚠️",
-    "date": "Summer 2025",
-    "role": "Full-Stack Developer & Web Designer",
-    "description": "Built a medieval-themed fitness & diet tracker featuring a React frontend served by an Express backend. Designed a cohesive pixel‑art UI, added login and signup functionality with in‑memory authentication, and configured deployment on Vercel.",
-    "details": [
-      "Developed interactive React components with custom fonts and responsive styling",
-      "Implemented Express routes for signup and login using an in-memory user store",
-      "Configured a serverless API handler and deployment via Vercel",
-      "Included placeholder workout and diet planning features with pixel-art cards"
-    ],
-    "tech": ["Node.js", "React.js", "Express", "HTML", "CSS", "Vercel"],
-    "link": "https://physique-forged.vercel.app/"
+    "tech": ["OpenAI GPT-4", "LangChain", "FAISS", "OpenAI Embeddings API", "Python", "BeautifulSoup", "Playwright"],
+    "projectLink": "https://github.com/adamwalid64/NFL-RAG-LLM",
+    "githubLink": "https://github.com/adamwalid64/NFL-RAG-LLM"
   }
 ]

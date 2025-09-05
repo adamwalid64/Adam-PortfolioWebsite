@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #151515;
+      color: #D5CCC3;
+    }
+    .test-button {
+      background: #5bb3ff;
+      color: #D5CCC3;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 10px;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .test-button:hover {
+      background: #4a9be6;
+    }
+  </style>
+</head>
+<body>
+  <h1>Button Test Page</h1>
+  <p>This page tests basic button functionality to ensure the issue isn't with the browser or system.</p>
+  
+  <button class="test-button" onclick="testClick()">Test Button Click</button>
+  <a href="https://github.com/adamwalid64" target="_blank" class="test-button">Test GitHub Link</a>
+  <a href="https://www.google.com" target="_blank" class="test-button">Test External Link</a>
+  
+  <script>
+    function testClick() {
+      alert('Button click working!');
+      console.log('Button clicked successfully');
+    }
+    
+    // Test touch events
+    document.addEventListener('touchstart', (e) => {
+      console.log('Touch event detected:', e.target);
+    });
+    
+    // Test mouse events
+    document.addEventListener('mousedown', (e) => {
+      console.log('Mouse event detected:', e.target);
+    });
+  </script>
+</body>
+</html>
+
+

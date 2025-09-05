@@ -12,15 +12,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  cursor: grab;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-}
-
-.carousel-container:active {
-  cursor: grabbing;
 }
 
 /* Ensure carousel content is centered */
@@ -58,7 +53,157 @@
   height: 650px;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   transform-style: preserve-3d;
-  cursor: pointer;
+}
+
+/* Mobile responsive project cards */
+@media (max-width: 768px) {
+  .carousel-card {
+    width: 420px;
+    height: 1050px;
+  }
+  
+  .carousel-track {
+    height: 1100px;
+  }
+  
+  .card-content {
+    flex-direction: column;
+    padding: 15px;
+    gap: 12px;
+  }
+  
+  .card-avatar {
+    order: 1;
+    margin-bottom: 10px;
+  }
+  
+  .card-details {
+    order: 2;
+    flex: 1;
+    gap: 8px;
+  }
+  
+  .card-details h3 {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+  
+  .card-details p {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  
+  .card-features {
+    order: 3;
+    margin-top: 10px;
+  }
+  
+  .card-features h4 {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  
+  .card-features li {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+  
+  .card-tech {
+    order: 4;
+    margin-top: 10px;
+  }
+  
+  .card-tech h4 {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  
+  .tech-tag {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+  
+  .card-links {
+    order: 5;
+    margin-top: 15px;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .project-link {
+    font-size: 11px;
+    padding: 8px 12px;
+  }
+  
+  .card-status {
+    order: 6;
+    margin-top: 10px;
+    font-size: 12px;
+  }
+  
+  /* Mobile side card positioning */
+  .carousel-card.left {
+    transform: translateX(-60%) scale(0.7) translateZ(-50px);
+  }
+  
+  .carousel-card.right {
+    transform: translateX(60%) scale(0.7) translateZ(-50px);
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .carousel-card {
+    width: 380px;
+    height: 1100px;
+  }
+  
+  .carousel-track {
+    height: 1150px;
+  }
+  
+  .card-content {
+    padding: 12px;
+    gap: 10px;
+  }
+  
+  .card-details h3 {
+    font-size: 16px;
+  }
+  
+  .card-details p {
+    font-size: 11px;
+    line-height: 1.2;
+  }
+  
+  .card-features h4,
+  .card-tech h4 {
+    font-size: 13px;
+  }
+  
+  .card-features li {
+    font-size: 10px;
+    padding: 2px 5px;
+  }
+  
+  .tech-tag {
+    font-size: 9px;
+    padding: 2px 5px;
+  }
+  
+  .project-link {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+  
+  /* Extra small mobile side card positioning */
+  .carousel-card.left {
+    transform: translateX(-50%) scale(0.6) translateZ(-50px);
+  }
+  
+  .carousel-card.right {
+    transform: translateX(50%) scale(0.6) translateZ(-50px);
+  }
 }
 
 /* Hover effects for cards - only center card */
@@ -68,8 +213,45 @@
 
 .carousel-card.center:hover {
   transform: translateZ(20px) scale(1.02);
-  filter: drop-shadow(0 0 25px rgba(166, 61, 64, 0.6));
   z-index: 15;
+}
+
+/* Disable card transforms when hovering over buttons to ensure clickability */
+.carousel-card.center:has(.card-links:hover) {
+  transform: translateZ(0) scale(1);
+  z-index: 15;
+}
+
+
+
+/* Purchase Pulse hover glow - Purple */
+.carousel-card.purchase-pulse.center:hover {
+  filter: drop-shadow(0 0 25px rgba(124, 115, 230, 0.6));
+}
+
+/* Keep glow effects when hovering over buttons */
+.carousel-card.purchase-pulse.center:has(.card-links:hover) {
+  filter: drop-shadow(0 0 25px rgba(124, 115, 230, 0.6));
+}
+
+/* FightMetrics AI hover glow - Red */
+.carousel-card.fightmetrics-ai.center:hover {
+  filter: drop-shadow(0 0 25px rgba(166, 61, 64, 0.6));
+}
+
+/* Keep glow effects when hovering over buttons */
+.carousel-card.fightmetrics-ai.center:has(.card-links:hover) {
+  filter: drop-shadow(0 0 25px rgba(166, 61, 64, 0.6));
+}
+
+/* NFL Fantasy RAG hover glow - Green */
+.carousel-card.nfl-fantasy-rag.center:hover {
+  filter: drop-shadow(0 0 25px rgba(76, 175, 80, 0.6));
+}
+
+/* Keep glow effects when hovering over buttons */
+.carousel-card.nfl-fantasy-rag.center:has(.card-links:hover) {
+  filter: drop-shadow(0 0 25px rgba(76, 175, 80, 0.6));
 }
 
 /* Disable hover effects for side cards */
@@ -126,6 +308,11 @@
   transform: translateZ(5px);
 }
 
+/* Disable card inner transforms when hovering over buttons */
+.carousel-card.center:has(.card-links:hover) .card-inner {
+  transform: translateZ(0);
+}
+
 .card-content {
   width: 100%;
   height: 100%;
@@ -145,9 +332,25 @@
 
 /* Card content hover effect - only center card */
 .carousel-card.center:hover .card-content {
-  border-color: var(--accent-red);
-  box-shadow: inset 0 0 15px rgba(166, 61, 64, 0.2);
   background: rgba(21, 21, 21, 0.98);
+}
+
+/* Purchase Pulse card content hover - Purple */
+.carousel-card.purchase-pulse.center:hover .card-content {
+  border-color: #7C73E6;
+  box-shadow: inset 0 0 15px rgba(124, 115, 230, 0.25);
+}
+
+/* FightMetrics AI card content hover - Red */
+.carousel-card.fightmetrics-ai.center:hover .card-content {
+  border-color: #A63D40;
+  box-shadow: inset 0 0 15px rgba(166, 61, 64, 0.25);
+}
+
+/* NFL Fantasy RAG card content hover - Green */
+.carousel-card.nfl-fantasy-rag.center:hover .card-content {
+  border-color: #4CAF50;
+  box-shadow: inset 0 0 15px rgba(76, 175, 80, 0.25);
 }
 
 /* Holographic Effects - Removed shine effects */
@@ -156,7 +359,7 @@
 .card-avatar {
   display: flex;
   justify-content: center;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 }
 
 .card-avatar .avatar {
@@ -244,22 +447,136 @@
   color: #8884d8 !important;
 }
 
+/* FightMetrics AI Theme - Red */
 .carousel-card.fightmetrics-ai .avatar {
-  border-color: #b34345;
-  box-shadow: 0 0 20px rgba(179, 67, 69, 0.5);
+  border-color: #A63D40;
+  box-shadow: 0 0 20px rgba(166, 61, 64, 0.6);
 }
 
-.carousel-card.physique-forged .avatar {
-  border-color: var(--accent-red);
-  box-shadow: 0 0 20px rgba(166, 61, 64, 0.5);
+.carousel-card.fightmetrics-ai .card-content {
+  border: 2px solid #A63D40;
+  background: rgba(21, 21, 21, 0.95);
+}
+
+.carousel-card.fightmetrics-ai .card-content:hover {
+  border-color: #b34345;
+  box-shadow: inset 0 0 15px rgba(166, 61, 64, 0.3);
+  background: rgba(21, 21, 21, 0.98);
 }
 
 .carousel-card.fightmetrics-ai .card-details h3 {
-  color: #b34345;
+  color: #A63D40;
 }
 
 .carousel-card.fightmetrics-ai .card-details h3:hover {
-  text-shadow: 0 0 8px rgba(179, 67, 69, 0.6);
+  text-shadow: 0 0 8px rgba(166, 61, 64, 0.6);
+}
+
+.carousel-card.fightmetrics-ai .card-features li {
+  background: rgba(166, 61, 64, 0.2);
+  border: 1px solid rgba(166, 61, 64, 0.4);
+  color: var(--text-light);
+}
+
+.carousel-card.fightmetrics-ai .tech-tag {
+  background: rgba(166, 61, 64, 0.3);
+  border: 1px solid rgba(166, 61, 64, 0.5);
+  color: var(--text-light);
+}
+
+.carousel-card.fightmetrics-ai .project-link {
+  background: #A63D40;
+  color: var(--text-light);
+}
+
+.carousel-card.fightmetrics-ai .project-link:hover {
+  background: #b34345;
+  box-shadow: 0 5px 15px rgba(166, 61, 64, 0.4);
+}
+
+.carousel-card.fightmetrics-ai .project-link.github {
+  background: rgba(166, 61, 64, 0.3);
+  border: 1px solid #A63D40;
+  color: #b34345;
+}
+
+.carousel-card.fightmetrics-ai .project-link.github:hover {
+  background: #A63D40;
+  color: var(--text-light);
+}
+
+.carousel-card.fightmetrics-ai .card-links {
+  border-top: 1px solid rgba(166, 61, 64, 0.4);
+}
+
+.carousel-card.fightmetrics-ai .card-status {
+  color: #b34345 !important;
+}
+
+/* NFL Fantasy RAG Pipeline Theme - Green */
+.carousel-card.nfl-fantasy-rag .avatar {
+  border-color: #4CAF50;
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+}
+
+.carousel-card.nfl-fantasy-rag .card-content {
+  border: 2px solid #4CAF50;
+  background: rgba(21, 21, 21, 0.95);
+}
+
+.carousel-card.nfl-fantasy-rag .card-content:hover {
+  border-color: #66BB6A;
+  box-shadow: inset 0 0 15px rgba(76, 175, 80, 0.3);
+  background: rgba(21, 21, 21, 0.98);
+}
+
+.carousel-card.nfl-fantasy-rag .card-details h3 {
+  color: #4CAF50;
+}
+
+.carousel-card.nfl-fantasy-rag .card-details h3:hover {
+  text-shadow: 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+.carousel-card.nfl-fantasy-rag .card-features li {
+  background: rgba(76, 175, 80, 0.2);
+  border: 1px solid rgba(76, 175, 80, 0.4);
+  color: var(--text-light);
+}
+
+.carousel-card.nfl-fantasy-rag .tech-tag {
+  background: rgba(76, 175, 80, 0.3);
+  border: 1px solid rgba(76, 175, 80, 0.5);
+  color: var(--text-light);
+}
+
+.carousel-card.nfl-fantasy-rag .project-link {
+  background: #4CAF50;
+  color: var(--text-light);
+}
+
+.carousel-card.nfl-fantasy-rag .project-link:hover {
+  background: #66BB6A;
+  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+.carousel-card.nfl-fantasy-rag .project-link.github {
+  background: rgba(76, 175, 80, 0.3);
+  border: 1px solid #4CAF50;
+  color: #66BB6A;
+}
+
+.carousel-card.nfl-fantasy-rag .project-link.github:hover {
+  background: #4CAF50;
+  color: var(--text-light);
+}
+
+.carousel-card.nfl-fantasy-rag .card-links {
+  border-top: 1px solid rgba(76, 175, 80, 0.4);
+}
+
+.carousel-card.nfl-fantasy-rag .card-status {
+  color: #66BB6A !important;
 }
 
 /* Card Details */
@@ -331,7 +648,7 @@
   background: rgba(166, 61, 64, 0.2);
   border-radius: 15px;
   text-align: center;
-  border: 1px solid rgba(166, 61, 64, 0.3);
+  border: 1px solid rgba(166, 61, 64, 0.35);
 }
 
 /* Tech Stack */
@@ -379,7 +696,7 @@
   justify-content: center;
   gap: 15px;
   padding: 15px 0;
-  border-top: 1px solid rgba(166, 61, 64, 0.3);
+  border-top: 1px solid rgba(166, 61, 64, 0.35);
   margin-top: auto;
 }
 
@@ -441,15 +758,15 @@
   background: var(--accent-red);
   border-color: var(--accent-red);
   transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 4px 12px rgba(166, 61, 64, 0.3);
+  box-shadow: 0 4px 12px rgba(166, 61, 64, 0.35);
 }
 
 .carousel-nav.prev {
-  left: 20px;
+  left: 50px;
 }
 
 .carousel-nav.next {
-  right: 20px;
+  right: 50px;
 }
 
 .carousel-nav:disabled {
@@ -496,31 +813,14 @@
 .carousel-indicator.active {
   background: var(--accent-red);
   border-color: var(--accent-red);
-  box-shadow: 0 0 10px rgba(166, 61, 64, 0.5);
+  box-shadow: 0 0 10px rgba(166, 61, 64, 0.55);
 }
 
-/* Responsive Design */
+/* Responsive Design - Navigation only */
 @media (max-width: 768px) {
   .carousel-container {
     padding: 10px;
     overflow: visible;
-  }
-  
-  .carousel-track {
-    height: 600px;
-  }
-  
-  .carousel-card {
-    width: 500px;
-    height: 550px;
-  }
-  
-  .carousel-card.left {
-    transform: translateX(-60%) scale(0.7) translateZ(-50px);
-  }
-  
-  .carousel-card.right {
-    transform: translateX(60%) scale(0.7) translateZ(-50px);
   }
   
   .carousel-nav {
@@ -533,32 +833,15 @@
   }
   
   .carousel-nav.prev {
-    left: 8px;
+    left: 50px;
   }
   
   .carousel-nav.next {
-    right: 8px;
+    right: 50px;
   }
 }
 
 @media (max-width: 480px) {
-  .carousel-card {
-    width: 420px;
-    height: 480px;
-  }
-  
-  .card-content {
-    padding: 25px;
-  }
-  
-  .card-details h3 {
-    font-size: 20px;
-  }
-  
-  .card-details p {
-    font-size: 12px;
-  }
-  
   .carousel-nav {
     width: 50px;
     height: 50px;
@@ -569,10 +852,21 @@
   }
   
   .carousel-nav.prev {
-    left: 5px;
+    left: 30px;
   }
   
   .carousel-nav.next {
-    right: 5px;
+    right: 30px;
+  }
+}
+
+/* Extra small screens - ensure buttons fit within viewport */
+@media (max-width: 360px) {
+  .carousel-nav.prev {
+    left: 20px;
+  }
+  
+  .carousel-nav.next {
+    right: 20px;
   }
 } 

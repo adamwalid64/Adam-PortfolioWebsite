@@ -43,6 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
     .catch(err => console.error('loadProjects error:', err));
+    
+  // Start the animated background canvas
+  startCanvas();
 
 });
 
@@ -120,7 +123,7 @@ function startCanvas() {
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.lineWidth = 2;
-    ctx.strokeStyle = 'rgba(255,255,255,0.6)';
+    ctx.strokeStyle = 'rgba(91, 179, 255, 0.6)';
 
     ctx.beginPath();
     points.forEach((pt, i) => {
@@ -146,12 +149,12 @@ function startCanvas() {
       projY += slope + (Math.random() - 0.5) * canvas.height * 0.03;
       ctx.lineTo(projX, projY);
     }
-    ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+    ctx.strokeStyle = 'rgba(91, 179, 255, 0.3)';
     ctx.stroke();
     ctx.setLineDash([]);
 
     // draw points and values
-    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    ctx.fillStyle = 'rgba(91, 179, 255, 0.8)';
     ctx.font = '12px monospace';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'bottom';

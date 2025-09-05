@@ -1,16 +1,149 @@
 const { useState, useEffect } = React;
 
+// Resume Button Component
+class ResumeButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDropdownOpen: false,
+      isFullScreenOpen: false
+    };
+    this.dropdownRef = React.createRef();
+    this.modalRef = React.createRef();
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+  handleClickOutside = (event) => {
+    if (this.dropdownRef.current && !this.dropdownRef.current.contains(event.target)) {
+      this.setState({ isDropdownOpen: false });
+    }
+    if (this.modalRef.current && !this.modalRef.current.contains(event.target)) {
+      this.setState({ isFullScreenOpen: false });
+    }
+  };
+
+  toggleDropdown = () => {
+    this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
+  };
+
+  closeDropdown = () => {
+    this.setState({ isDropdownOpen: false });
+  };
+
+  openFullScreen = () => {
+    this.setState({ isFullScreenOpen: true });
+  };
+
+  closeFullScreen = () => {
+    this.setState({ isFullScreenOpen: false });
+  };
+
+  handleDownload = () => {
+    // Create a temporary link to download the resume
+    const link = document.createElement('a');
+    link.href = 'images/Adam_Walid_Resume.pdf';
+    link.download = 'Adam_Walid_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  render() {
+    return (
+      <div className="resume-container" ref={this.dropdownRef}>
+        <button 
+          className="resume-button"
+          onClick={this.toggleDropdown}
+        >
+          Resume
+        </button>
+        
+        {this.state.isDropdownOpen && (
+          <div className="resume-dropdown">
+            <div className="resume-preview" onClick={this.openFullScreen}>
+              <iframe 
+                src="images/Adam_Walid_Resume.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                width="100%"
+                height="400px"
+                title="Resume Preview"
+              />
+              <div className="preview-overlay">
+                <span className="preview-text">Click to view full screen</span>
+              </div>
+            </div>
+            <div className="resume-actions">
+              <button 
+                className="download-button"
+                onClick={this.handleDownload}
+              >
+                Download Resume
+              </button>
+              <button 
+                className="close-button"
+                onClick={this.closeDropdown}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Full Screen PDF Modal */}
+        {this.state.isFullScreenOpen && (
+          <div className="pdf-modal-overlay" onClick={this.closeFullScreen}>
+            <div className="pdf-modal" ref={this.modalRef} onClick={(e) => e.stopPropagation()}>
+              <div className="pdf-modal-header">
+                <h3>Adam Walid - Resume</h3>
+                <button className="modal-close-button" onClick={this.closeFullScreen}>
+                  ×
+                </button>
+              </div>
+              <div className="pdf-modal-content">
+                <iframe 
+                  src="images/Adam_Walid_Resume.pdf#toolbar=1&navpanes=1&scrollbar=1"
+                  width="100%"
+                  height="100%"
+                  title="Full Screen Resume"
+                />
+              </div>
+              <div className="pdf-modal-footer">
+                <button 
+                  className="download-button"
+                  onClick={this.handleDownload}
+                >
+                  Download Resume
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
+
 // App Component
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects: []
+      projects: [],
+      showSpeechBubble: false
     };
   }
 
   componentDidMount() {
     this.loadProjects();
+    
+    // Show speech bubble immediately when page loads
+    this.setState({ showSpeechBubble: true });
   }
 
   loadProjects() {
@@ -78,6 +211,7 @@ class App extends React.Component {
           {/* Header with links */}
           <header className="hero">
             <div className="header-contact">
+              <ResumeButton />
               <a href="https://www.linkedin.com/in/adamwalid/" target="_blank" rel="noopener">LinkedIn</a>
               <a href="https://github.com/adamwalid64" target="_blank" rel="noopener">GitHub</a>
             </div>
@@ -89,8 +223,24 @@ class App extends React.Component {
             <h1 className="title">Hi, I'm <strong>Adam Walid</strong></h1>
             <p className="subtitle">Data Science & Full-Stack Developer | CS + Data Analytics @ Syracuse University</p>
             
-            <div className="profile-pic">
-              <img src="images/linkedin.jpg" alt="Profile picture" />
+            <div className="profile-pic-container">
+              <div className="profile-pic">
+                <img 
+                  src="images/linkedin.jpg" 
+                  alt="Profile picture" 
+                  onClick={() => this.setState({ showSpeechBubble: !this.state.showSpeechBubble })}
+                  style={{ cursor: 'pointer' }}
+                />
+              </div>
+              {this.state.showSpeechBubble && (
+                <SpeechBubble 
+                  isVisible={this.state.showSpeechBubble}
+                  text="I'm a passionate developer who loves turning ideas into reality with code and exploring the future through machine learning and RAG pipelines. My coding experience mainly combines full-stack applications with intricate data pipelines that power advanced models to predict outcomes, uncover insights others can't see, and automate time-intensive tasks. In my free time I love skateboarding, going to the gym, watching UFC, building passion projects around my hobbies, and hanging out with friends."
+                  position="top-right"
+                  delay={100}
+                  onClose={() => {}} // No longer needed - bubble returns to minimized state
+                />
+              )}
             </div>
           </header>
         </main>

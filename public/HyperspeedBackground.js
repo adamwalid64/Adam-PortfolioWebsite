@@ -8,7 +8,7 @@ const HyperspeedBackground = ({
   trailLength = 20,
   backgroundColor = '#151515',
   starColor = '#D5CCC3',
-  trailColor = '#A63D40'
+  trailColor = '#9966CC'
 }) => {
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
@@ -25,7 +25,11 @@ const HyperspeedBackground = ({
       canvas.style.width = rect.width + 'px';
       canvas.style.height = rect.height + 'px';
       ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-      setDimensions({ width: rect.width, height: rect.height });
+      
+      // Force a small delay to ensure proper canvas setup
+      setTimeout(() => {
+        setDimensions({ width: rect.width, height: rect.height });
+      }, 10);
     };
 
     resizeCanvas();
@@ -52,8 +56,8 @@ const HyperspeedBackground = ({
       }
 
       reset() {
-        this.x = Math.random() * dimensions.width;
-        this.y = Math.random() * dimensions.height;
+        this.x = Math.random() * (dimensions.width || window.innerWidth);
+        this.y = Math.random() * (dimensions.height || window.innerHeight);
         this.z = Math.random() * 2000;
         this.size = Math.random() * starSize + 1;
         this.speed = Math.random() * speed + 0.5;
@@ -71,8 +75,10 @@ const HyperspeedBackground = ({
 
         // Calculate screen position
         const scale = 1000 / this.z;
-        const x = (this.x - dimensions.width / 2) * scale + dimensions.width / 2;
-        const y = (this.y - dimensions.height / 2) * scale + dimensions.height / 2;
+        const width = dimensions.width || window.innerWidth;
+        const height = dimensions.height || window.innerHeight;
+        const x = (this.x - width / 2) * scale + width / 2;
+        const y = (this.y - height / 2) * scale + height / 2;
 
         // Add to trail
         this.trail.push({ x, y, scale });
@@ -95,11 +101,13 @@ const HyperspeedBackground = ({
           const current = this.trail[i];
           const next = this.trail[i + 1];
           
-          if (current.x > 0 && current.x < dimensions.width && 
-              current.y > 0 && current.y < dimensions.height) {
+          const width = dimensions.width || window.innerWidth;
+          const height = dimensions.height || window.innerHeight;
+          if (current.x > 0 && current.x < width && 
+              current.y > 0 && current.y < height) {
             
             const alpha = i / this.trail.length;
-            ctx.strokeStyle = `rgba(166, 61, 64, ${alpha * 0.8})`;
+            ctx.strokeStyle = `rgba(153, 102, 204, ${alpha * 0.8})`;
             ctx.lineWidth = this.size * current.scale * 0.5;
             
             ctx.moveTo(current.x, current.y);
@@ -110,8 +118,10 @@ const HyperspeedBackground = ({
 
         // Draw star
         const last = this.trail[this.trail.length - 1];
-        if (last.x > 0 && last.x < dimensions.width && 
-            last.y > 0 && last.y < dimensions.height) {
+        const width = dimensions.width || window.innerWidth;
+        const height = dimensions.height || window.innerHeight;
+        if (last.x > 0 && last.x < width && 
+            last.y > 0 && last.y < height) {
           
           ctx.beginPath();
           ctx.fillStyle = starColor;
@@ -121,13 +131,15 @@ const HyperspeedBackground = ({
       }
     }
 
-    // Create stars
+    // Create stars - recreate when dimensions change
     const stars = Array.from({ length: starCount }, () => new Star());
 
     // Animation loop
     const animate = () => {
+      const width = dimensions.width || window.innerWidth;
+      const height = dimensions.height || window.innerHeight;
       ctx.fillStyle = backgroundColor;
-      ctx.fillRect(0, 0, dimensions.width, dimensions.height);
+      ctx.fillRect(0, 0, width, height);
 
       // Update and draw stars
       stars.forEach(star => {

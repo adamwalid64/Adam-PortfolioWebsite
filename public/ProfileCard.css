@@ -6,7 +6,7 @@
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 60px 0 20px 0;
+  padding: 60px 20px 20px 20px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -16,6 +16,7 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  box-sizing: border-box;
 }
 
 /* Ensure carousel content is centered */
@@ -57,8 +58,12 @@
 
 /* Mobile responsive project cards */
 @media (max-width: 768px) {
+  .carousel-container {
+    padding: 40px 10px 20px 10px;
+  }
+  
   .carousel-card {
-    width: 420px;
+    width: min(420px, 90vw);
     height: 1050px;
   }
   
@@ -141,20 +146,24 @@
     font-size: 12px;
   }
   
-  /* Mobile side card positioning */
+  /* Mobile side card positioning - use viewport-based positioning */
   .carousel-card.left {
-    transform: translateX(-60%) scale(0.7) translateZ(-50px);
+    transform: translateX(calc(-50vw + 50% - 20px)) scale(0.7) translateZ(-50px);
   }
   
   .carousel-card.right {
-    transform: translateX(60%) scale(0.7) translateZ(-50px);
+    transform: translateX(calc(50vw - 50% + 20px)) scale(0.7) translateZ(-50px);
   }
 }
 
 /* Extra small mobile devices */
 @media (max-width: 480px) {
+  .carousel-container {
+    padding: 30px 5px 20px 5px;
+  }
+  
   .carousel-card {
-    width: 380px;
+    width: min(380px, 85vw);
     height: 1100px;
   }
   
@@ -196,13 +205,13 @@
     padding: 6px 10px;
   }
   
-  /* Extra small mobile side card positioning */
+  /* Extra small mobile side card positioning - use viewport-based positioning */
   .carousel-card.left {
-    transform: translateX(-50%) scale(0.6) translateZ(-50px);
+    transform: translateX(calc(-50vw + 50% - 15px)) scale(0.6) translateZ(-50px);
   }
   
   .carousel-card.right {
-    transform: translateX(50%) scale(0.6) translateZ(-50px);
+    transform: translateX(calc(50vw - 50% + 15px)) scale(0.6) translateZ(-50px);
   }
 }
 
